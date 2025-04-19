@@ -1,0 +1,201 @@
+.login {
+    display: flex;
+}
+
+.login article,
+.login form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.login article {
+    width: 55%;
+    color: #243a5f;
+}
+
+.login article::after {
+    content: '';
+    width: 95%;
+    background-color: #92c5e8;
+    height: 200%;
+    position: absolute;
+    z-index: -1;
+    border-top-right-radius: 60%;
+    border-bottom-right-radius: 60%;
+    left: 0px;
+}
+
+.login article::before {
+    content: '';
+    width: 100%;
+    background-color: #5681c7;
+    height: 200%;
+    position: absolute;
+    z-index: -1;
+    border-top-right-radius: 60%;
+    border-bottom-right-radius: 60%;
+    left: -20px;
+    transform: rotateZ(-3deg);
+}
+
+.login article h1 {
+    text-align: center;
+    width: 60%;
+    user-select: none;
+    font-family: "Roboto Condensed", sans-serif;
+    animation: slideInLeftToRight 1s normal linear;
+}
+
+.login article img {
+    width: 50%;
+    animation: slideInLeftToRight 0.8s normal linear;
+    user-select: none;
+}
+
+.login form {
+    width: 45%;
+    animation: fadeIn 0.8s normal linear;
+}
+
+.login form h2 {
+    margin-bottom: 4%;
+    color: #626262;
+    user-select: none;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.login form input {
+    width: 70%;
+    margin: 1% 0;
+    padding: 1.7% 0;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 3px lightgray;
+    transition: border 0.5s ease, box-shadow 0.5s ease;
+    color: #333333;
+}
+
+.login form input:focus {
+    outline: none;
+    box-shadow: 0 0 15px lightgray;
+    border: 1px solid gray;
+}
+
+.login form button {
+    width: 50%;
+    margin: 3% 0;
+    padding: 1.6% 0;
+    border: 0;
+    color: white;
+    background-color: #5681c7;
+    transition: background-color 0.6s ease;
+}
+
+.login form button:hover {
+    background-color: #92c5e8;
+}
+
+.login form input,
+.login form button {
+    border-radius: 10px;
+    text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+@keyframes slideInLeftToRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .login form input {
+        width: 80%;
+        margin: 1.8% 0;
+        padding: 2.5% 0;
+    }
+
+    .login form input:focus {
+        outline: none;
+        box-shadow: 0 0 15px lightgray;
+        border: 1px solid gray;
+    }
+
+    .login form button {
+        width: 50%;
+        margin: 3% 0;
+        padding: 2% 0;
+        border: 0;
+        color: white;
+        background-color: #5681c7;
+        transition: background-color 0.6s ease;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .login {
+        flex-direction: column;
+    }
+
+    .login form {
+        margin-top: 10%;
+        justify-content: start;
+    }
+
+    .login article {
+        height: 30vh;
+    }
+
+    .login article img {
+        display: none;
+    }
+
+    .login article::after {
+        width: 100%;
+        height: 90%;
+        border-top-right-radius: unset;
+        border-bottom-right-radius: 60%;
+        border-bottom-left-radius: 60%;
+        top: 0;
+    }
+
+    .login article::before {
+        width: 100%;
+        height: 95%;
+        border-top-right-radius: unset;
+        border-bottom-right-radius: 60%;
+        border-bottom-left-radius: 60%;
+        transform: none;
+        left: 0px;
+        top: 0px;
+    }
+
+    .login form {
+        height: 70vh;
+    }
+
+    .login article,
+    .login form {
+        width: 100%;
+    }
+}
