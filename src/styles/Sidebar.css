@@ -1,0 +1,52 @@
+/* Configuracion del SIDEBAR (TIENE TITULO Y BOTONES)*/
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 15%;
+  height: 100vh;
+  background: linear-gradient(-120deg, #5681c7 30%, #40619b 70%);
+  animation: slideInLeftToRight 0.4s normal linear;
+}
+
+/* LISTA QUE TIENE LOS BOTONES DEL SIDEBAR*/
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+}
+
+/* BOTONES DEL SIDEBAR*/
+.sidebar ul li {
+  width: 100%;
+  padding: 2vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li:hover{
+  background: linear-gradient(-120deg, #3d66ac 30%, #2c4d86 70%);
+  cursor: pointer;
+}
+
+/* LETRAS DE LOS BOTONES*/
+.sidebar ul li a{
+  display: flex;
+  font-size: 1.25vw;
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar ul li:hover a{
+  color: white;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-size: 30px;
+}
