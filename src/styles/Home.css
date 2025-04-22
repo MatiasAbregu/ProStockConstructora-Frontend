@@ -12,3 +12,11 @@
   flex-wrap: wrap;
   overflow-y: auto;
 }
+
+@media screen and (max-width: 1300px){
+  .Home {
+    flex-direction: row;
+    overflow-y: auto;
+    width: 80%;
+  }
+} 

@@ -12,6 +12,7 @@
   box-shadow: 0 0 10px gray;
   transition: transform 0.3s ease;
   text-decoration: none;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .btn-mio div {
@@ -32,15 +33,22 @@
   -webkit-mask-image: linear-gradient(to left, transparent, black 30%);
 }
 
-.btn-mio:hover {
-  transform: scale(1.1);
-}
-
 .btn-mio div h3,
 .btn-mio div p {
   color: #5681c7;
 }
 
 .btn-mio div p {
-    width: 90%;
+  width: 90%;
+}
+
+@media screen and (max-width: 1300px) {
+  .btn-mio {
+    width: 80%;
+    height: 300px;
+  }
+
+  .btn-mio img {
+    left: -35px;
+  }
 }
