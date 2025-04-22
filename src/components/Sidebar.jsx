@@ -25,8 +25,8 @@ export const Sidebar = () => {
         </li>
         <li>
           <a href="/tracking">
-            Seguimiento &nbsp;
-            <span class="material-symbols-outlined">construction</span>
+            Pedidos &nbsp;
+            <span class="material-symbols-outlined">inventory_2</span>
           </a>
         </li>
         <li>
@@ -36,13 +36,19 @@ export const Sidebar = () => {
           </a>
         </li>
         <li>
+          <a href="/construction-work">
+            Obras &nbsp;
+            <span className="material-symbols-outlined">auto_towing</span>
+          </a>
+        </li>
+        <li>
           <a href="/enterprises">
             Empresas &nbsp;
             <span className="material-symbols-outlined">business</span>
           </a>
         </li>
         <li>
-          <a href="/analytics">
+          <a href="/stadistics">
             Estadísticas &nbsp;
             <span className="material-symbols-outlined">analytics</span>
           </a>

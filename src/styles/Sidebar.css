@@ -4,7 +4,7 @@
   flex-direction: column;
   overflow: hidden;
   width: 15%;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(-120deg, #5681c7 30%, #40619b 70%);
   animation: slideInLeftToRight 0.4s normal linear;
 }
