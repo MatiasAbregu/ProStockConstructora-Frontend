@@ -6,7 +6,7 @@ export const Sidebar = () => {
     <div className="sidebar">
       <ul>
         <li>
-          <a href="/">
+          <a href="/home">
             Inicio &nbsp;
             <span className="material-symbols-outlined">home</span>
           </a>
@@ -20,13 +20,13 @@ export const Sidebar = () => {
         <li>
           <a href="/machines">
             Maquinarias &nbsp;
-            <span class="material-symbols-outlined">forklift</span>
+            <span className="material-symbols-outlined">forklift</span>
           </a>
         </li>
         <li>
           <a href="/tracking">
             Pedidos &nbsp;
-            <span class="material-symbols-outlined">inventory_2</span>
+            <span className="material-symbols-outlined">inventory_2</span>
           </a>
         </li>
         <li>
