@@ -8,7 +8,7 @@ export const Home = () => {
     document.title = "Inicio - ProStockConstructora";
 
     const rootDiv = document.getElementById("root");
-    rootDiv.classList.add("homepage");
+    rootDiv.className = "pagedivided";
   }, []);
 
   return (

@@ -1,3 +1,9 @@
 body{
   margin: 0;
 }
+
+#root.pagedivided{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
