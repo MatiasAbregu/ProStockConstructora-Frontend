@@ -54,6 +54,12 @@ export const Sidebar = () => {
           </a>
         </li>
         <li>
+        <a href="/users">
+            Usuarios &nbsp;
+            <span className="material-symbols-outlined">groups</span>
+          </a>
+        </li>
+        <li>
           <a href="/log-out">
             Cerrar sesión &nbsp;
             <span className="material-symbols-outlined">logout</span>
