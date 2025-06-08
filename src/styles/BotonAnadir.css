@@ -1,0 +1,30 @@
+.btnAdd {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  background-color: white;
+
+  border: 3px solid #44c27a;
+  border-radius: 20px;
+  color: #44c27a;
+  text-decoration: none;
+
+  padding: 1.2% 0;
+  margin-left: auto;
+  margin-right: 3%;
+  width: 25%;
+  font-size: 1.2rem;
+
+  transition: ease .3s all;
+}
+
+.btnAdd span:nth-child(1) {
+  text-align: center;
+  width: 60%;
+}
+
+.btnAdd:hover{
+  color: white;
+  background-color: #44c27a;
+}

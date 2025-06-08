@@ -1,0 +1,22 @@
+{
+    "obras": [
+        {
+            "codigo": 1,
+            "estado": "Activo",
+            "nombreObra": "Pepe",
+            "empresa": "Lola",
+            "pepe": "pepe",
+            "asd": "pito",
+            "pokemon": "gardevoir"
+        },
+        {
+            "codigo": 2,
+            "estado": "Activo",
+            "nombreObra": "Pepe",
+            "empresa": "Lola",
+            "pepe": "pepe",
+            "asd": "pito",
+            "pokemon": "gardevoir"
+        }
+    ]
+}

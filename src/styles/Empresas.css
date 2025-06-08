@@ -1,0 +1,16 @@
+.Enterprises {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 1300px){
+  .Enterprises {
+    flex-direction: row;
+    overflow-y: auto;
+    width: 80%;
+  }
+} 

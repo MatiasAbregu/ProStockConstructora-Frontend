@@ -1,0 +1,52 @@
+{
+    "usuarios": [
+        {
+            "codigo": 1,
+            "nombreDeUsuario": "Matias",
+            "rol": "Admin",
+            "estado": "Activo"
+        },
+        {
+            "codigo": 2,
+            "nombreDeUsuario": "Sergio",
+            "rol": "Admin",
+            "estado": "Activo"
+        },
+        {
+            "codigo": 3,
+            "nombreDeUsuario": "Mariano",
+            "rol": "Admin",
+            "estado": "Activo"
+        },
+        {
+            "codigo": 4,
+            "nombreDeUsuario": "Daniel",
+            "rol": "Admin",
+            "estado": "Inactivo"
+        },
+        {
+            "codigo": 5,
+            "nombreDeUsuario": "Marianela",
+            "rol": "Admin",
+            "estado": "Activo"
+        },
+        {
+            "codigo": 6,
+            "nombreDeUsuario": "Martin",
+            "rol": "Admin",
+            "estado": "Activo"
+        },
+        {
+            "codigo": 7,
+            "nombreDeUsuario": "Ezequiel",
+            "rol": "Admin",
+            "estado": "Inactivo"
+        },
+        {
+            "codigo": 8,
+            "nombreDeUsuario": "Agustin",
+            "rol": "Admin",
+            "estado": "Activo"
+        }
+    ]
+}

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
-import { ButtonMenu } from "../components/ButtonMenu";
+import { Table } from "../components/Table";
+import { BotonAnadir } from "../components/BotonAnadir";
+import '../styles/ConstructionWork.css';
 
 export const ConstructionWork = () => {
   useEffect(() => {
@@ -14,11 +16,11 @@ export const ConstructionWork = () => {
     <>
       <Sidebar />
       <section className="ConstructionWork">
-        <h1>Obras</h1>
-        <p>Esta es la página de obras.</p>
-        <ButtonMenu url={""} img={""} desc={""}>
-          Obras
-        </ButtonMenu>
+        <BotonAnadir>Añadir obra</BotonAnadir>
+        <Table
+          columnas={["Código", "Estado", "Nombre de obra", "Empresa", "Pepe", "Asd", "Pokemon"]}
+          peticionURL={"/datosObras.json"}
+        />
       </section>
     </>
   );

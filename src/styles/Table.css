@@ -1,0 +1,79 @@
+.tableArticle {
+    width: 95%;
+    height: 80vh;
+    overflow: auto;
+}
+
+table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+th,
+td {
+    padding: 3vh 0;
+    text-align: center;
+    border-radius: 10px;
+    white-space: normal;
+}
+
+th {
+    background-color: #6884ff;
+    font-weight: bold;
+    font-size: 1.42rem;
+    color: white;
+    position: sticky;
+    top: 0;
+    min-width: 120px;
+}
+
+td, td span {
+    font-size: 1.25rem;
+    color: white;
+}
+
+tr td:nth-child(1) {
+    background-color: #8198ff;
+}
+
+tr td:nth-child(2) {
+    background-color: #8ea3ff;
+}
+
+tr td:nth-child(3) {
+    background-color: #9cacff;
+}
+
+tr td:nth-child(4) {
+    background-color: #a7b7ff;
+}
+
+tr td:nth-child(5) {
+    background-color: #acbcfb;
+}
+
+tr td:nth-child(6) {
+    background-color: #a9b9f4;
+}
+
+tr td:nth-child(7) {
+    background-color: #b5c4fc;
+}
+
+.tablaFilaEliminar span {
+    margin: 0 3%;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: ease .3s color, ease .3s background-color;
+    background-color: white;
+    padding: 5%;
+    border-radius: 10px;
+    color: black;
+}
+
+.tablaFilaEliminar span:hover{
+    background-color: #4366ff;
+    color: white;
+}

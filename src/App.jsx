@@ -9,6 +9,7 @@ import { Deposits } from "./pages/Deposits";
 import { ConstructionWork } from "./pages/ConstructionWork";
 import { Enterprises } from "./pages/Enterprises";
 import { Stadistics } from "./pages/Stadistics";
+import { Users } from "./pages/Users";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/construction-work" element={<ConstructionWork />} />
         <Route path="/enterprises" element={<Enterprises />} />
         <Route path="/stadistics" element={<Stadistics />} />
+        <Route path="/users" element={<Users />} />
       </Routes>
     </BrowserRouter>
   );
