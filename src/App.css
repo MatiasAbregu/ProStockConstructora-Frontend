@@ -1,9 +1,37 @@
-body{
+body {
   margin: 0;
 }
 
-#root.pagedivided{
+#root.pagedivided {
   display: flex;
   flex-direction: row;
   height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+input,
+label,
+select {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #40619B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
 }

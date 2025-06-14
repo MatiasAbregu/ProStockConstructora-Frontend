@@ -48,7 +48,6 @@
     text-align: center;
     width: 60%;
     user-select: none;
-    font-family: "Roboto Condensed", sans-serif;
     animation: slideInLeftToRight 1s normal linear;
 }
 
@@ -67,10 +66,9 @@
     margin-bottom: 4%;
     color: #626262;
     user-select: none;
-    font-family: "Roboto Condensed", sans-serif;
 }
 
-.login form input {
+.login form input[type=text], .login form input[type=password] {
     width: 70%;
     margin: 1% 0;
     padding: 1.7% 0;
@@ -80,7 +78,8 @@
     color: #333333;
 }
 
-.login form input:focus {
+.login form input[type=text]:focus,
+.login form input[type=password]:focus  {
     outline: none;
     box-shadow: 0 0 15px lightgray;
     border: 1px solid gray;
@@ -100,11 +99,23 @@
     background-color: #92c5e8;
 }
 
-.login form input,
+.login form input[type=text],
+.login form input[type=password],
 .login form button {
     border-radius: 10px;
     text-align: center;
-    font-family: "Roboto Condensed", sans-serif;
+}
+
+.checkboxDiv {
+    display: flex;
+    margin-top: 1.5%;
+    width: 38%;
+    justify-content: space-evenly;
+    font-size: 1.1rem;
+}
+
+.checkboxDiv input {
+    width: 7%;
 }
 
 @keyframes slideInLeftToRight {

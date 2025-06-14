@@ -3,7 +3,7 @@ import "../styles/ButtonMenu.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export const ButtonMenu = ({ url, img, children, desc }) => {
+export const ButtonMenu = ({ url, img, children, desc}) => {
  
   const MotionLink = motion(Link);
  

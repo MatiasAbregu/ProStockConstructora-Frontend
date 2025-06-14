@@ -18,6 +18,10 @@ export const Login = () => {
           <h2>Iniciar Sesión</h2>
           <input type="text" placeholder="Ingrese nombre de usuario" />
           <input type="password" placeholder="Ingrese contraseña" />
+          <div className="checkboxDiv">
+            <input type="checkbox" />
+            <label>Mantener sesión iniciada</label>
+          </div>
           <button type="submit">Ingresar</button>
         </form>
       </section>

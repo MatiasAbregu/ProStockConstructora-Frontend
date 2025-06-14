@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import '../styles/BotonAnadir.css';
 
-export const BotonAnadir = ({ children }) => {
+export const BotonAnadir = ({ children, setOnClick }) => {
     return (
-        <Link className="btnAdd"><span>{children}</span> <span className="material-symbols-outlined">add_circle</span></Link>
+        <button className="btnAnadir" onClick={setOnClick}>
+            <span>{children}</span> <span className="material-symbols-outlined">add_circle</span>
+        </button>
     );
 }

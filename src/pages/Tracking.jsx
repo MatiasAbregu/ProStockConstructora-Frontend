@@ -14,11 +14,6 @@ export const Tracking = () => {
     <>
       <Sidebar />
       <section className="Tracking">
-       <Table
-        columnas={["Cliente", "Producto","Cantidad","Unidad","Fecha de pedido", "Estado", "Obra"]}
-        columnaEditar={true}
-        peticionURL={"/datosPedidos.json"}
-       />
       </section>
     </>
   );

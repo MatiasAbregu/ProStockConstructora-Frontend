@@ -1,22 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import '../styles/Table.css';
 
-export const Table = ({ columnas, peticionURL, columnaEditar }) => {
-
-    const [datos, setDatos] = useState([]);
-
-    useEffect(() => {
-        if (peticionURL != "") {
-            fetch(peticionURL)
-                .then(r => r.json())
-                .then(datos => {
-                    const EncontrarPrimerArreglo = Object.values(datos).find(a => Array.isArray(a));
-                    if (EncontrarPrimerArreglo) { setDatos(EncontrarPrimerArreglo); console.log(EncontrarPrimerArreglo); }
-                })
-                .catch(er => console.log(er))
-        }
-    }, [peticionURL]);
-
+export const Table = ({ columnas, datos, columnaEditar }) => {
     return (
         <article className="tableArticle">
             <table>
@@ -42,15 +27,17 @@ export const Table = ({ columnas, peticionURL, columnaEditar }) => {
                         (
                             <tr key={i}>
                                 {
-                                    Object.values(fila).map((dato, i) => (
-                                        <td key={i}>{dato}</td>
-                                    ))
+                                    Object.entries(fila).map(([identificador, dato], i) => {
+                                        if(identificador.toLowerCase().includes("id")) return (<></>);
+                                        if(dato == null) return(<td key={i}>---</td>)
+                                        return(<td key={i}>{dato}</td>);
+                                    })
                                 }
                                 {
                                     columnaEditar ?
-                                        <td className="tablaFilaEliminar">
+                                        <td className="tablaFilaEditar" style={{minWidth:"120px"}}>
                                             <span className="material-symbols-outlined">edit_square</span>
-                                            <span className="material-symbols-outlined">task_alt</span>
+                                            <span className="material-symbols-outlined">do_not_disturb_on</span>
                                         </td>
                                         :
                                         <></>
