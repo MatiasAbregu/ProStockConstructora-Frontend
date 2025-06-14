@@ -28,14 +28,16 @@ export const Table = ({ columnas, datos, columnaEditar }) => {
                             <tr key={i}>
                                 {
                                     Object.entries(fila).map(([identificador, dato], i) => {
-                                        if(identificador.toLowerCase().includes("id")) return (<></>);
-                                        if(dato == null) return(<td key={i}>---</td>)
-                                        return(<td key={i}>{dato}</td>);
+                                        if (identificador.startsWith("id") || identificador.startsWith("Id") || identificador.startsWith("ID") ||
+                                            identificador.includes("Id"))
+                                            return (<></>);
+                                        if (dato == null) return (<td key={i}>---</td>)
+                                        return (<td key={i}>{dato}</td>);
                                     })
                                 }
                                 {
                                     columnaEditar ?
-                                        <td className="tablaFilaEditar" style={{minWidth:"120px"}}>
+                                        <td className="tablaFilaEditar" style={{ minWidth: "120px" }}>
                                             <span className="material-symbols-outlined">edit_square</span>
                                             <span className="material-symbols-outlined">do_not_disturb_on</span>
                                         </td>
