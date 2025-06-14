@@ -1,4 +1,4 @@
-.btnAdd {
+.btnAnadir {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -13,18 +13,27 @@
   padding: 1.2% 0;
   margin-left: auto;
   margin-right: 3%;
-  width: 25%;
+  width: 28%;
   font-size: 1.2rem;
 
   transition: ease .3s all;
+  user-select: none;
 }
 
-.btnAdd span:nth-child(1) {
+.btnAnadir span:nth-child(1) {
   text-align: center;
   width: 60%;
 }
 
-.btnAdd:hover{
+.btnAnadir:hover {
   color: white;
   background-color: #44c27a;
+}
+
+.btnAnadir span:nth-child(2) {
+  transition: ease .3s transform;
+}
+
+.btnAnadir:hover span:nth-child(2) {
+  transform: scale(1.2);
 }

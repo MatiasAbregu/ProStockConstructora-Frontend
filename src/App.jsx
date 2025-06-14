@@ -9,7 +9,9 @@ import { Deposits } from "./pages/Deposits";
 import { ConstructionWork } from "./pages/ConstructionWork";
 import { Enterprises } from "./pages/Enterprises";
 import { Stadistics } from "./pages/Stadistics";
-import { Users } from "./pages/Users";
+import { MenuUsers } from "./pages/UsersPages/MenuUsers";
+import { UsersView } from "./pages/UsersPages/UsersView";
+import { LogOut } from './pages/LogOut';
 
 function App() {
   return (
@@ -24,7 +26,11 @@ function App() {
         <Route path="/construction-work" element={<ConstructionWork />} />
         <Route path="/enterprises" element={<Enterprises />} />
         <Route path="/stadistics" element={<Stadistics />} />
-        <Route path="/users" element={<Users />} />
+        
+        <Route path="/users" element={<MenuUsers />} />
+        <Route path="/users/users-view" element={<UsersView />} />
+        <Route path="/log-out" element={<LogOut />} />
+
       </Routes>
     </BrowserRouter>
   );

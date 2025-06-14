@@ -16,7 +16,7 @@ td {
     padding: 3vh 0;
     text-align: center;
     border-radius: 10px;
-    white-space: normal;
+    word-break: normal;
 }
 
 th {
@@ -26,10 +26,12 @@ th {
     color: white;
     position: sticky;
     top: 0;
-    min-width: 120px;
+    max-width: 300px;
 }
 
-td, td span {
+td,
+td span {
+    word-break: break-all;
     font-size: 1.25rem;
     color: white;
 }
@@ -62,18 +64,25 @@ tr td:nth-child(7) {
     background-color: #b5c4fc;
 }
 
-.tablaFilaEliminar span {
+.tablaFilaEditar span {
     margin: 0 3%;
     cursor: pointer;
     font-size: 2rem;
-    transition: ease .3s color, ease .3s background-color;
+    transition: ease .3s all;
     background-color: white;
     padding: 5%;
     border-radius: 10px;
     color: black;
 }
 
-.tablaFilaEliminar span:hover{
-    background-color: #4366ff;
+.tablaFilaEditar span:hover {
     color: white;
+}
+
+.tablaFilaEditar span:hover:nth-child(1) {
+    background-color: #1aa958;
+}
+
+.tablaFilaEditar span:hover:nth-child(2) {
+    background-color: #c24444;
 }
