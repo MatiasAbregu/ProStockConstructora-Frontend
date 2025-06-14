@@ -18,7 +18,7 @@ export const ConstructionWork = () => {
       <section className="ConstructionWork">
         <BotonAnadir>Añadir obra</BotonAnadir>
         <Table
-          columnas={["Código", "Estado", "Nombre de obra", "Empresa", "Pepe", "Asd", "Pokemon"]}
+          columnas={["Código", "Estado", "Nombre de obra", "Empresa"]}
           peticionURL={"/datosObras.json"}
         />
       </section>

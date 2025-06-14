@@ -1,0 +1,31 @@
+{
+  "Pedidos": [
+    {
+      "cliente": "Juan Pérez",
+      "producto": "Cemento Portland",
+      "cantidad": 3,
+      "unidad": "BolsaX50kg",
+      "fechaPedido": "02/08/2025",
+      "estado": "Enviado",
+      "obra": "Edificio Central"
+    },
+    {
+      "cliente": "María López",
+      "producto": "Aceros de alta resistencia",
+      "cantidad": 2,
+      "unidad": "kg/m³",
+      "fechaPedido": "17/08/2025",
+      "estado": "Recibido",
+      "obra": "Puente Nuevo"
+    },
+    {
+      "cliente": "Carlos García",
+      "producto": "Aluminio para estructuras",
+      "cantidad": 5,
+      "unidad": "kg/m³",
+      "fechaPedido": "06/04/2025",
+      "estado" : "Enviado",
+      "obra": "Torre de Control"
+    }
+  ]
+}

@@ -1,66 +1,70 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "../styles/Sidebar.css";
 
+
 export const Sidebar = () => {
+const navLinkClass = ({ isActive }) => isActive ? "sidebar-link active" : "side-bar-link";
+
   return (
     <div className="sidebar">
       <ul>
         <li>
-          <a href="/home">
+          <NavLink to="/home" className={navLinkClass}>
             Inicio &nbsp;
             <span className="material-symbols-outlined">home</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/materials">
+          <NavLink to="/materials" className={navLinkClass}>
             Materiales &nbsp;
             <span className="material-symbols-outlined">construction</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/machines">
+          <NavLink to="/machines" className={navLinkClass}>
             Maquinarias &nbsp;
             <span className="material-symbols-outlined">forklift</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/tracking">
+          <NavLink to="/tracking" className={navLinkClass}>
             Pedidos &nbsp;
             <span className="material-symbols-outlined">inventory_2</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/deposits">
+          <NavLink to="/deposits" className={navLinkClass}>
             Depósitos &nbsp;
             <span className="material-symbols-outlined">warehouse</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/construction-work">
+          <NavLink to="/construction-work" className={navLinkClass}>
             Obras &nbsp;
             <span className="material-symbols-outlined">auto_towing</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/enterprises">
+          <NavLink to="/enterprises" className={navLinkClass}>
             Empresas &nbsp;
             <span className="material-symbols-outlined">business</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/stadistics">
+          <NavLink to="/stadistics" className={navLinkClass}>
             Estadísticas &nbsp;
             <span className="material-symbols-outlined">analytics</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-        <a href="/users">
+        <NavLink to="/users" className={navLinkClass}>
             Usuarios &nbsp;
             <span className="material-symbols-outlined">groups</span>
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/log-out">
+          <a href="/log-out" className={navLinkClass}>
             Cerrar sesión &nbsp;
             <span className="material-symbols-outlined">logout</span>
           </a>

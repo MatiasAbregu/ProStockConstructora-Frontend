@@ -1,0 +1,14 @@
+{
+   "Depositos": [
+      {
+         "id": 1,
+         "ubicacion": "Av. Libertador 1234, Ciudad Capital",
+         "Obra": "Pepe"
+      },
+      {
+            "id": 2,
+            "ubicacion": "Calle Falsa 5678, Ciudad Capital",
+            "Obra": "Excalivur"
+        }
+    ]  
+}

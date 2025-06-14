@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
-import { ButtonMenu } from "../components/ButtonMenu";
+import { Table } from "../components/Table";
 
 export const Tracking = () => {
   useEffect(() => {
@@ -14,11 +14,11 @@ export const Tracking = () => {
     <>
       <Sidebar />
       <section className="Tracking">
-        <h1>Seguimiento</h1>
-        <p>Esta es la página de seguimiento.</p>
-        <ButtonMenu ur={""} img={""} desc={""}>
-          Seguimiento
-        </ButtonMenu>
+       <Table
+        columnas={["Cliente", "Producto","Cantidad","Unidad","Fecha de pedido", "Estado", "Obra"]}
+        columnaEditar={true}
+        peticionURL={"/datosPedidos.json"}
+       />
       </section>
     </>
   );

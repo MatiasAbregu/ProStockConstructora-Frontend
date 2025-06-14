@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
-import { ButtonMenu } from "../components/ButtonMenu";
+import { Table } from "../components/Table";
+import "../styles/Deposits.css";
+import "../styles/Table.css";
 
 export const Deposits = () => {
   useEffect(() => {
@@ -14,11 +16,11 @@ export const Deposits = () => {
     <>
       <Sidebar />
       <section className="Deposits">
-        <h1>Depósitos</h1>
-        <p>Esta es la página de depósitos.</p>
-        <ButtonMenu url={""} img={""} desc={""}>
-          Depositos
-        </ButtonMenu>
+        <Table
+          columnas={["Código","Ubicacion","Obra"]}
+          columnaEditar={true}
+          peticionURL={"/datosDepositos.json"}
+        />
       </section>
     </>
   );
