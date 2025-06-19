@@ -7,10 +7,30 @@
   overflow-y: auto;
 }
 
-@media screen and (max-width: 1300px){
+.alertContainer {
+  position: absolute;
+  width: 40%;
+  top: 10%;
+  left: 30%;
+  background-color: #1aa958;
+  color: white;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.alertContainer div {
+  position: relative;
+}
+
+.alertContainer div span {
+  position: absolute;
+  right: 20px;
+}
+
+@media screen and (max-width: 1300px) {
   .Enterprises {
     flex-direction: row;
     overflow-y: auto;
     width: 80%;
   }
-} 
+}

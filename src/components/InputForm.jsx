@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/InputForm.css';
 
-export const InputForm = ({ children, typeInput, required, placeholder, icon, select, register, registerData, errorsHandle }) => {
+export const InputForm = ({ children, typeInput, required, placeholder, icon, select, register, registerData, errorsHandle, keyHandle }) => {
     if (!select) {
         return (
             <div className="inputFormContainer">
@@ -10,7 +10,7 @@ export const InputForm = ({ children, typeInput, required, placeholder, icon, se
                     {icon ? <span className="material-symbols-outlined">{icon}</span> : <></>}
                     <input type={typeInput} {...(typeof register == "function" ? register(registerData) : {})}
                     placeholder={placeholder} required={required} className={`${icon ? "withIcon" : ""} 
-                    ${errorsHandle && errorsHandle[registerData]?.message ? "ierror" : ""}`} />
+                    ${errorsHandle && errorsHandle[registerData]?.message ? "ierror" : ""}`} onKeyDown={keyHandle} />
                 </div>
                 {errorsHandle && errorsHandle[registerData]?.message ? <p className="error">{errorsHandle[registerData].message}</p> : <></>}
             </div>

@@ -13,10 +13,11 @@ table {
 
 th,
 td {
-    padding: 3vh 0;
+    padding: 3vh 0.7vw;
     text-align: center;
     border-radius: 10px;
     word-break: normal;
+    max-width: 500px;
 }
 
 th {
@@ -26,7 +27,6 @@ th {
     color: white;
     position: sticky;
     top: 0;
-    max-width: 300px;
 }
 
 td,
