@@ -3,6 +3,9 @@ import { Sidebar } from "../components/Sidebar";
 import { ButtonMenu } from "../components/ButtonMenu";
 import { Table } from "../components/Table";
 import "../styles/Deposits.css";
+
+
+
 export const Deposits = () => {
   useEffect(() => {
     document.title = "Depósitos - ProStockConstructora";
@@ -15,7 +18,7 @@ export const Deposits = () => {
     <>
       <Sidebar />
       <section className="Deposits">
-        <h1>Administrar Depósitos</h1>
+        <h2>Administrar Depósitos</h2>
         <Table
           columnas={["Codigo", "Direccion", "Obra"]}
           columnaEditar={true}
