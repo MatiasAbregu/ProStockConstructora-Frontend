@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { Table } from "../components/Table";
+import { BotonAnadir } from "../components/BotonAnadir";
+import { useState } from "react";
+import React from "react";
 import "../styles/Materials.css";
 import "../styles/Table.css";
+import { Form } from "../components/Form";
 
 export const Materials = () => {
   useEffect(() => {
@@ -12,11 +16,25 @@ export const Materials = () => {
     rootDiv.className = "pagedivided";
   }, []);
 
+  const[modal, setModal] = useState(false);
+  
   return (
     <>
+      {
+         modal ? 
+         <Form title={"Añadir material"} buttonMsg={"caca"}></Form>:<></>
+         
+          
+
+          
+        
+      }
+
+
       <Sidebar />
       <section className="Materials">
         <h1>Administración General de Materiales:</h1>
+        <BotonAnadir setOnClick={() => setModal(true)}>Añadir material</BotonAnadir>
         <Table
           columnas={["Código", "Nombre", "Descripción", "Cantidad", "Unidad", "Vencimiento"]}
           columnaEditar={true}
