@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../styles/Table.css';
 
-export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle }) => {
+export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, stateHandle }) => {
     return (
         <article className="tableArticle">
             <table>
@@ -46,7 +46,7 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle })
                                                     idHandle(id);
                                                 }}>edit_square</span>
                                                 <span className="material-symbols-outlined" onClick={() => {
-                                                    
+                                                    stateHandle(id);
                                                 }}>{estado ? "do_not_disturb_on" : "add_circle"}</span>
                                             </td>
                                             :
