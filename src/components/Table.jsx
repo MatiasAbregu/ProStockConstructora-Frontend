@@ -47,7 +47,7 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                                                 }}>edit_square</span>
                                                 <span className="material-symbols-outlined" onClick={() => {
                                                     stateHandle(id);
-                                                }}>{estado ? "do_not_disturb_on" : "add_circle"}</span>
+                                                }}>{estado ? "do_not_disturb_on" : !estado ? "add_circle" : "do_not_disturb_on"}</span>
                                             </td>
                                             :
                                             <></>
