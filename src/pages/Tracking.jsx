@@ -58,17 +58,11 @@ export const Tracking = () => {
                   "fecha_entrega": "15-05-26",
                   "detalle_pedido": "50kg cemento",
                   "deposito_solicito": "Obra 4"
-              }
-
-              
-
-                         
+              }             
               
             ]
           }
-        />
-
-               
+        />         
     
       </section>
     </>

@@ -10,27 +10,56 @@
 .alertContainer {
   position: absolute;
   width: 40%;
-  top: 10%;
-  left: 30%;
-  background-color: #1aa958;
+  bottom: 2%;
+  right: 1%;
   color: white;
   border-radius: 10px;
   user-select: none;
+  z-index: 2;
+  animation: slideIn .5s linear normal;
+}
+
+.alertContainer.FRexito {
+    background-color: #1aa958;
+}
+
+.alertContainer.FRerror {
+    background-color: #c24444;
 }
 
 .alertContainer div {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2% 2%;
 }
 
 .alertContainer div span {
-  position: absolute;
-  right: 20px;
+  align-self: flex-start;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.alertContainer div p {
+  width: 90%;
+  margin: 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 1300px) {
   .Enterprises {
     flex-direction: row;
     overflow-y: auto;
-    width: 80%;
+    width: 90%;
   }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(50vw);
+  }
+  100%{
+    transform: translateX(0);
+   }
 }

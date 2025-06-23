@@ -9,12 +9,22 @@ import { InputForm } from "../../components/InputForm";
 import '../../styles/Users.css';
 import '../../styles/Modal.css';
 import UsuarioServicio from "../../services/UsuarioServicio";
+import { Form } from "../../components/Form";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
+import CrearUsuarioYUP from "../../schemas/CrearUsuarioYUP";
+import InputControl from "../../validation/InputControl";
+import EmpresaServicio from "../../services/EmpresaServicio";
 
 export const UsersView = () => {
 
     const [rol, setRol] = useState("Superadministrador");
     const [datos, setDatos] = useState([]);
+    const [datosEmpresas, setDatosEmpresas] = useState([]);
+
     const [modal, setModal] = useState(false);
+
+    const [idUpdate, setIdUpdate] = useState(0);
 
     useEffect(() => {
         document.title = "Usuarios - ProStockConstructora";
@@ -25,33 +35,70 @@ export const UsersView = () => {
 
     useEffect(() => {
         if (rol == "Superadministrador") {
-            UsuarioServicio.ObtenerAdministradores().then(datos => { setDatos(datos.data); console.log(datos.data); });
+            UsuarioServicio.ObtenerAdministradores().then(datos => { setDatos(datos.data); });
+            EmpresaServicio.obtenerEmpresasAAsociar().then(datos => { setDatosEmpresas(datos.data); });
         }
     }, [rol]);
+
+    const { register, formState: { errors }, handleSubmit, reset, setValue } = useForm({ resolver: yupResolver(CrearUsuarioYUP), mode: "onChange" });
+
+    // MODAL
+    const onSubmit = () => {
+
+    }
+
+    const CerrarModal = () => {
+        setModal(false);
+        if (idUpdate != 0 || !resultAPI.includes("Error")) reset();
+        //if (!resultAPI.includes("Error")) RecargarTabla();
+        setIdUpdate(0);
+    }
 
     return (
         <>
             {
                 modal ?
-                    <div className="modalBack">
-                        <form>
-                            <span onClick={() => setModal(false)} className="btnClose">X</span>
-                            <h3>Registrar administrador</h3>
-                            <InputForm typeInput={"text"} required={true} icon={"person"}>
-                                Ingrese el nombre de usuario:
-                            </InputForm>
-                            <InputForm typeInput={"email"} required={true} icon={"mail"}>
-                                Ingrese el email (opcional):
-                            </InputForm>
-                            <InputForm typeInput={"tel"} required={true} icon={"call"}>
-                                Ingrese el teléfono (opcional):
-                            </InputForm>
-                            <InputForm select={["Algorry Studios", "ProStock", "Pepe Company"]} icon={"domain"}>
-                                Asocie este administrador a una empresa:
-                            </InputForm>
-                            <button type="submit">Crear administrador</button>
-                        </form>
-                    </div>
+                    <Form title={idUpdate == 0 ? "Registrar usuario" : "Actualizar usuario"}
+                        buttonMsg={idUpdate == 0 ? "Añadir usuario" : "Actualizar usuario"}
+                        handleSubmit={handleSubmit(onSubmit)} closeModal={CerrarModal}
+                        // setAlertMSGAPI={setAlertMSGAPI} alertMSGAPI={alertMSGAPI} resultAPI={resultAPI}
+                        inputs={[
+                            {
+                                "type": "text",
+                                "required": true,
+                                "icon": "person",
+                                "register": register,
+                                "registerData": "NombreUsuario",
+                                "errors": errors,
+                                "keyHandle": e => InputControl.sinCaracteresEspeciales(e),
+                                "info": "Ingrese el nombre de usuario:"
+                            },
+                            {
+                                "type": "email",
+                                "required": true,
+                                "icon": "mail",
+                                "register": register,
+                                "registerData": "Email",
+                                "errors": errors,
+                                "info": "Ingrese el email(opcional):"
+                            },
+                            {
+                                "type": "tel",
+                                "required": true,
+                                "icon": "call",
+                                "register": register,
+                                "registerData": "Celular",
+                                "errors": errors,
+                                "info": "Ingrese el teléfono (opcional):"
+                            },
+                            {
+                                "type": "select",
+                                "select": datosEmpresas,
+                                "icon": "domain",
+                                "info": "Asocie este administrador a una empresa:"
+                            }
+                        ]}
+                    />
                     :
                     <></>
             }

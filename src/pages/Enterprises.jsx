@@ -21,12 +21,15 @@ export const Enterprises = () => {
   // USE STATES
   const [rol, setRol] = useState("Superadministrador");
   const [datos, setDatos] = useState([]);
+
+  // Activamos y desactivamos desde acá el modal con el formulario
   const [modal, setModal] = useState(false);
-  const [modalForm, setModalForm] = useState(false);
+  
   const [alertMSGAPI, setAlertMSGAPI] = useState(false);
   const [resultAPI, setResultAPI] = useState();
+
   const [idUpdate, setIdUpdate] = useState(0);
-  const [alertWithoutModal, setAlertWithoutModal] = useState(true);
+  const [alertWithoutModal, setAlertWithoutModal] = useState(false);
 
   // USE EFFECTS
   useEffect(() => {
@@ -41,10 +44,6 @@ export const Enterprises = () => {
       RecargarTabla();
     }
   }, [rol]);
-
-  useEffect(() => {
-    if (modal) setTimeout(() => setModalForm(true), 500);
-  }, [modal]);
 
   useEffect(() => {
     if (idUpdate != 0) CargarDatos(idUpdate);
@@ -92,14 +91,15 @@ export const Enterprises = () => {
     });
   }
 
-  const CambiarEstado = (id) => {
-    EmpresaServicio.cambiarEstadoEmpresa(id).then(d => {
-      setAlertMSGAPI(true);
+  const CambiarEstado = async (id) => {
+    await EmpresaServicio.cambiarEstadoEmpresa(id).then(d => {
+      setAlertWithoutModal(true);
       setResultAPI(d.data);
     }).catch(e => {
-      setAlertMSGAPI(true);
+      setAlertWithoutModal(true);
       setResultAPI("Error:" + e.response.data);
     });
+    RecargarTabla();
   }
 
   // MODAL
@@ -114,8 +114,8 @@ export const Enterprises = () => {
 
   const CerrarModal = () => {
     setModal(false);
-    setModalForm(false);
-    if (idUpdate != 0) reset();
+    if (idUpdate != 0 || !resultAPI.includes("Error")) reset();
+    if(!resultAPI.includes("Error")) RecargarTabla();
     setIdUpdate(0);
   }
 
@@ -123,86 +123,67 @@ export const Enterprises = () => {
     <>
       {
         alertWithoutModal ?
-          <div className="alertContainer">
+          <div className={`alertContainer ${resultAPI.includes("Error") ? "FRerror" : "FRexito"}`}>
             <div>
-              <span>X</span>
-              <p>{resultAPI.includes(":") ? resultAPI.split(":")[1] : resultAPI}</p>
+              <p>{resultAPI.includes("Error:") ? resultAPI.split(":")[1] : resultAPI}</p>
+              <span onClick={() => setAlertWithoutModal(false)}>X</span>
             </div>
           </div>
           : <></>
       }
       {
         modal ?
-          <div className="modalBack" onClick={alertMSGAPI ? () => {
-            setAlertMSGAPI(false)
-            if (!resultAPI.includes("Error")) {
-              CerrarModal();
-              RecargarTabla();
-              reset();
-            }
-          } : undefined}>
-            {
-              alertMSGAPI ?
-                <div className={`formResult ${resultAPI.includes("Error") ? "FRerror" : "FRexito"}`}>
-                  <p>{resultAPI.includes(":") ? resultAPI.split(":")[1] : resultAPI}</p>
-                </div>
-                : <></>
-            }
-            {
-              modalForm ?
-                <Form title={idUpdate == 0 ? "Registrar empresa" : "Actualizar empresa"}
-                  buttonMsg={idUpdate == 0 ? "Añadir empresa" : "Actualizar empresa"}
-                  handleSubmit={handleSubmit(onSubmit)} closeModal={CerrarModal}
-                  inputs={[
-                    {
-                      "type": "text",
-                      "required": true,
-                      "icon": "domain",
-                      "register": register,
-                      "registerData": "NombreEmpresa",
-                      "errors": errors,
-                      "info": "Ingrese el nombre de la empresa:"
-                    },
-                    {
-                      "type": "text",
-                      "required": true,
-                      "icon": "description",
-                      "register": register,
-                      "registerData": "CUIT",
-                      "errors": errors,
-                      "keyHandle": e => InputControl.soloNumeros(e),
-                      "info": "Ingrese el CUIT:"
-                    },
-                    {
-                      "type": "select",
-                      "select": ["Sociedad de Responsabilidad Limitada (S.R.L.)", "Sociedad Anónima (S.A.)", "Sociedad por Acciones Simplificada (S.A.S.)"],
-                      "icon": "balance",
-                      "register": register,
-                      "registerData": "RazonSocial",
-                      "errors": errors,
-                      "info": "Ingrese la razón social:"
-                    },
-                    {
-                      "type": "tel",
-                      "icon": "call",
-                      "register": register,
-                      "registerData": "Celular",
-                      "errors": errors,
-                      "keyHandle": e => InputControl.soloNumeros(e),
-                      "info": "Ingrese el teléfono (opcional):"
-                    },
-                    {
-                      "type": "email",
-                      "icon": "mail",
-                      "register": register,
-                      "registerData": "Email",
-                      "errors": errors,
-                      "info": "Ingrese el email (opcional):"
-                    }
-                  ]} /> :
-                <></>
-            }
-          </div>
+          <Form title={idUpdate == 0 ? "Registrar empresa" : "Actualizar empresa"}
+            buttonMsg={idUpdate == 0 ? "Añadir empresa" : "Actualizar empresa"}
+            handleSubmit={handleSubmit(onSubmit)} closeModal={CerrarModal} 
+            setAlertMSGAPI={setAlertMSGAPI} alertMSGAPI={alertMSGAPI} resultAPI={resultAPI}
+            inputs={[
+              {
+                "type": "text",
+                "required": true,
+                "icon": "domain",
+                "register": register,
+                "registerData": "NombreEmpresa",
+                "errors": errors,
+                "info": "Ingrese el nombre de la empresa:"
+              },
+              {
+                "type": "text",
+                "required": true,
+                "icon": "description",
+                "register": register,
+                "registerData": "CUIT",
+                "errors": errors,
+                "keyHandle": e => InputControl.soloNumeros(e),
+                "info": "Ingrese el CUIT:"
+              },
+              {
+                "type": "select",
+                "select": ["Sociedad de Responsabilidad Limitada (S.R.L.)", "Sociedad Anónima (S.A.)", "Sociedad por Acciones Simplificada (S.A.S.)"],
+                "icon": "balance",
+                "register": register,
+                "registerData": "RazonSocial",
+                "errors": errors,
+                "info": "Ingrese la razón social:"
+              },
+              {
+                "type": "tel",
+                "icon": "call",
+                "register": register,
+                "registerData": "Celular",
+                "errors": errors,
+                "keyHandle": e => InputControl.soloNumeros(e),
+                "info": "Ingrese el teléfono (opcional):"
+              },
+              {
+                "type": "email",
+                "icon": "mail",
+                "register": register,
+                "registerData": "Email",
+                "errors": errors,
+                "info": "Ingrese el email (opcional):"
+              }
+            ]} />
           :
           <></>
       }
@@ -216,6 +197,7 @@ export const Enterprises = () => {
           datos={datos}
           modalHandle={setModal}
           idHandle={setIdUpdate}
+          stateHandle={CambiarEstado}
         />
       </section>
     </>

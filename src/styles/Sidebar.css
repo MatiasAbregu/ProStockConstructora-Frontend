@@ -52,5 +52,9 @@
   font-size: 30px;
 }
 
+.sidebar ul li:has(.sidebar-link.active) {
+  background: linear-gradient(-120deg, #3d66ac 30%, #2c4d86 70%);
+}
+
 @media screen and (max-width: 1300px) {
 }

@@ -15,7 +15,6 @@ export const Stadistics = () => {
       <Sidebar />
       <section className="Stadistics">
         <h1>Estadísticas</h1>
-        <p>Esta es la página de estadísticas.</p>
         <ButtonMenu url={""} img={""} desc={""}>
           Estadísticas de materiales
         </ButtonMenu>

@@ -8,8 +8,12 @@ class EmpresaServicio {
         return axios.get(`${url}/obtener-empresas`);
     }
 
+    obtenerEmpresasAAsociar() {
+        return axios.get(`${url}/obtener-empresas-para-asociar`);
+    }
+
     obtenerEmpresaPorId(id) {
-        return axios.get(`${url}/obtener-empresa/${id}`);
+        return axios.get(`${url}/obtener-empresas/${id}`);
     }
 
     crearEmpresa(empresa) {
