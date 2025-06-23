@@ -14,7 +14,7 @@
 .inputFormContainer div {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
 }
 
 .inputFormContainer span {
@@ -23,15 +23,18 @@
     user-select: none;
 }
 
-.inputFormContainer input.withIcon, .inputFormContainer select.withIcon  {
+.inputFormContainer input.withIcon,
+.inputFormContainer select.withIcon {
     width: 91%;
 }
 
-.inputFormContainer input:not(.withIcon), .inputFormContainer select:not(.withIcon){
+.inputFormContainer input:not(.withIcon),
+.inputFormContainer select:not(.withIcon) {
     width: 100%;
 }
 
-.inputFormContainer input, .inputFormContainer select  {
+.inputFormContainer input,
+.inputFormContainer select {
     font-size: 1.15rem;
     border: none;
     color: #333333;
@@ -40,15 +43,20 @@
     text-align: center;
 }
 
-.inputFormContainer input:focus, .inputFormContainer select:focus {
+.inputFormContainer:has(input[type="hidden"]) {
+    display: none;
+}
+
+.inputFormContainer input:focus,
+.inputFormContainer select:focus {
     outline: none;
     box-shadow: 0 0 8px white;
 }
 
 .inputFormContainer select {
     appearance: none;
-    background-image: 
-    url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-image:
+        url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
     background-position: right 5px center;
 }
