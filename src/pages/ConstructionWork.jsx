@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { Table } from "../components/Table";
 import { BotonAnadir } from "../components/BotonAnadir";
-import '../styles/ConstructionWork.css';
+import "../styles/ConstructionWork.css";
 
 export const ConstructionWork = () => {
   useEffect(() => {
@@ -19,7 +19,20 @@ export const ConstructionWork = () => {
         <BotonAnadir>Añadir obra</BotonAnadir>
         <Table
           columnas={["Código", "Estado", "Nombre de obra", "Empresa"]}
-          peticionURL={"/datosObras.json"}
+          datos={[
+            {
+              codigo: 1,
+              estado: "Activo",
+              nombreObra: "Pepe",
+              empresa: "Lola",
+            },
+            {
+              codigo: 2,
+              estado: "Activo",
+              nombreObra: "Excalivur",
+              empresa: "Susin",
+            },
+          ]}
         />
       </section>
     </>

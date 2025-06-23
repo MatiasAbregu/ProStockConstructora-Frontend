@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
-import { ButtonMenu } from "../components/ButtonMenu";
 import { Table } from "../components/Table";
 import "../styles/Materials.css";
 import "../styles/Table.css";
@@ -17,6 +16,7 @@ export const Materials = () => {
     <>
       <Sidebar />
       <section className="Materials">
+        <h1>Administración General de Materiales:</h1>
         <Table
           columnas={["Código", "Nombre", "Descripción", "Cantidad", "Unidad", "Vencimiento"]}
           columnaEditar={true}
