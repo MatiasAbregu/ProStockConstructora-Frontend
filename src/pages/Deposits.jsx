@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { ButtonMenu } from "../components/ButtonMenu";
+import {BotonAgregar} from "../components/BotonAgregar";
+import { BotonVer } from "../components/BotonVer";
+import { BotonEliminar } from "../components/BotonEliminar";
 import { Table } from "../components/Table";
 import "../styles/Deposits.css";
 
@@ -9,7 +12,7 @@ import "../styles/Deposits.css";
 export const Deposits = () => {
   useEffect(() => {
     document.title = "Depósitos - ProStockConstructora";
-
+   
     const rootDiv = document.getElementById("root");
     rootDiv.className = "pagedivided";
   }, []);
@@ -38,9 +41,12 @@ export const Deposits = () => {
               "Direccion": "Boulevard de los Sueños Rotos 789",
               "Obra": "Parque Industrial"
             }
-          ]}
-        />
+          ]} 
+        /><BotonAgregar>ADMINISTRAR STOCK</BotonAgregar>
+        <BotonVer>VER DEPOSITOS</BotonVer>
+        <BotonEliminar>ELIMINAR DEPOSITOS</BotonEliminar>
       </section>
     </>
   );
 };
+
