@@ -20,7 +20,7 @@ export const Tracking = () => {
       <Sidebar />
       <section className="Tracking">
 
-        <h1>Administración de pedidos:</h1>
+        <h1>Administrar pedidos:</h1>
         <Table
           columnas={["Nº Pedido", "Fecha Pedido", "Estado", "Fecha Estimada", "Detalle de Pedido", "Obra que lo solicito"]}
           columnaEditar={true}

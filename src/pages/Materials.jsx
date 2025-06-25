@@ -1,8 +1,13 @@
 import { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { Table } from "../components/Table";
+import { BotonAnadir } from "../components/BotonAnadir";
+import { useState } from "react";
+import { Form } from "../components/Form";
+import React from "react";
 import "../styles/Materials.css";
 import "../styles/Table.css";
+
 
 export const Materials = () => {
   useEffect(() => {
@@ -12,11 +17,52 @@ export const Materials = () => {
     rootDiv.className = "pagedivided";
   }, []);
 
+  const[modal, setModal] = useState(false);
+  
   return (
     <>
+      {
+         modal ? 
+         <Form title={"Añadir material"} buttonMsg={"Añadir"} closeModal={function(){setModal(false)}} inputs={[
+          {
+            "type": "text",
+            "info": "Código del material",
+            "required": true
+          },
+          {
+            "type": "text",
+            "info": "Nombre del material",
+            "required": true
+          },
+          {
+            "type": "text",
+            "info": "Descripción del material",
+            "required": true
+          },
+          {
+            "type": "number",
+            "info": "Cantidad disponible",
+            "required": true
+          },
+          {
+            "type": "text",
+            
+            "info": "Unidad de medida",
+            "required": true
+          },
+          {
+            "type": "date",
+            "info": "Fecha de vencimiento",
+            "required": true
+          }
+         ]}></Form>:<></>         
+      }
+
+
       <Sidebar />
       <section className="Materials">
-        <h1>Administración General de Materiales:</h1>
+        <h1>Administrar Materiales:</h1>
+        <BotonAnadir setOnClick={() => setModal(true)}>Añadir material</BotonAnadir>
         <Table
           columnas={["Código", "Nombre", "Descripción", "Cantidad", "Unidad", "Vencimiento"]}
           columnaEditar={true}
