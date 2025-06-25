@@ -1,4 +1,4 @@
-.btnEliminar
+.btnEliminarM
 {
     position: fixed;
     bottom: 20px;
@@ -17,18 +17,18 @@
     border-radius: 8px;
 
 }
-.btnEliminar:hover {
+.btnEliminarM:hover {
     background-color: #564caf; /* Rojo oscuro */
     color: white;
 }
-.btnEliminar:active {
+.btnEliminarM:active {
     background-color: #2700b3; /* Rojo más oscuro */
     color: white;
 }
-.btnEliminar span {
+.btnEliminarM span {
     display: inline-block;
     transition: transform 0.3s ease;
 }
-.btnEliminar:hover span {
+.btnEliminarM:hover span {
     transform: scale(1.1);
 }
