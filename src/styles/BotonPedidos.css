@@ -1,0 +1,18 @@
+.btnCrear{
+    position: fixed;        /* Fijado a la ventana */
+  bottom: 20px;           /* Distancia desde abajo */
+  left: 40%;             /* Distancia desde la izquierda */
+  padding: 6px 20px;      /* Tamaño del botón */
+  font-size: 20px;        /* Letra pequeña */
+  background-color: #007bff; /* Azul */
+  color: white;           /* Texto blanco */
+  border: none;           /* Sin borde */
+  border-radius: 5px;     /* Bordes redondeados */
+  cursor: pointer;        /* Manito al pasar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.btnCrear:hover{
+    background-color: aquamarine;
+    color: black;
+}

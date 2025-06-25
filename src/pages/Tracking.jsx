@@ -3,7 +3,9 @@ import { Sidebar } from "../components/Sidebar";
 import { ButtonMenu } from "../components/ButtonMenu";
 import "../styles/Tracking.css";
 import { Table } from "../components/Table";
-
+import { BotonPedidos } from "../components/BotonPedidos";
+import { BotonPedidos1 } from "../components/BotonPedidos2";
+import { BotonPedidos2 } from "../components/BotonPedidos3";
 
 export const Tracking = () => {
   useEffect(() => {
@@ -62,7 +64,10 @@ export const Tracking = () => {
               
             ]
           }
-        />         
+        />
+        <BotonPedidos1>Leer</BotonPedidos1>
+       <BotonPedidos>Crear</BotonPedidos>
+       <BotonPedidos2>Eliminar</BotonPedidos2>
     
       </section>
     </>

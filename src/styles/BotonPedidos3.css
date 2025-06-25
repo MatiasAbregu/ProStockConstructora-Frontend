@@ -1,0 +1,18 @@
+.btnEliminar{
+    position: fixed;        /* Fijado a la ventana */
+  bottom: 20px;           /* Distancia desde abajo */
+  left: 60%;             /* Distancia desde la izquierda */
+  padding: 6px 20px;      /* Tamaño del botón */
+  font-size: 20px;        /* Letra pequeña */
+  background-color: red; /* Azul */
+  color: white;           /* Texto blanco */
+  border: none;           /* Sin borde */
+  border-radius: 5px;     /* Bordes redondeados */
+  cursor: pointer;        /* Manito al pasar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.btnEliminar:hover{
+    background-color: rgb(236, 117, 117);
+    color: black;
+}
