@@ -3,13 +3,18 @@ import { useEffect } from "react";
 import { useState } from "react";
 import "../styles/ButtonMany.css";
 
-function ButtonMany() {
- const [selectedOption, setSelectedOption] = useState("0");
+function ButtonMany({setOpciones}) {
 
+  const cambiaropcion=(opcion) => {
+    setOpciones(opcion.target.value)
+  }
+
+        
   return (
     <>
        <div className="Button-container">
-          <select className="buttonmany">
+          <select className="buttonmany" onChange={(e)=>cambiaropcion(e)
+          }>
             <option value="0">Varios</option>
             <option value="1">Materiales</option>
             <option value="2">Maquinarias</option>

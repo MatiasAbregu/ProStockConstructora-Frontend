@@ -1,12 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Home.css";
 import { Sidebar } from "../components/Sidebar";
 import { ButtonMenu } from "../components/ButtonMenu";
 import { PendingOrders } from "./PendingOrders";
-import { Table } from "../components/Table";
+import { Table } from "../components/Table"; 
+
+
 import ButtonMany from "./ButtonMany";
 
 export const Home = () => {
+
+    const [opciones, setOpciones]= useState(0)
+
+
+
   useEffect(() => {
     document.title = "Inicio - ProStockConstructora";
 
@@ -20,9 +27,11 @@ export const Home = () => {
       <section className="Home">
         <h1>Pedidos pendientes:</h1>
         <div className="button-container">
-          <ButtonMany></ButtonMany>
+          <ButtonMany setOpciones={setOpciones}></ButtonMany>
         </div>
-        <Table
+          {  
+          opciones==0?
+          <Table
           columnas={["Código - Nombre - Empresa", "Estado"]}
           datos={[
             {
@@ -38,7 +47,24 @@ export const Home = () => {
               estado: "En pausa",
             },
           ]}
-        />
+        />: opciones==1?  
+        <Table datos={[{
+          "codigo":"01-Cemento-Loma Negra",
+          "Unidad": "Kg",
+        },{ "codigo":"02-Arena-Holmic",
+          "unidad":"Kg",
+
+        }
+      
+      
+      ]} columnaEditar={true} columnas={["Codigo - Nombre - Marca","Unidad"]}/>:
+         undefined
+
+         
+          
+          
+          
+          }
       </section>
     </>
   );
