@@ -52,6 +52,7 @@ export const ConstructionWork = () => {
         <BotonAnadir setOnClick={()=> setModal(true)}>Añadir obra</BotonAnadir>
         <Table
           columnas={["Código - Nombre - Empresa", "Estado"]} 
+          eyeurl={"/deposits"}
           columnaEditar={true}
           datos={[
             {

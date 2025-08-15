@@ -35,8 +35,6 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                                             if (identificador.startsWith("id") || identificador.startsWith("Id") || identificador.startsWith("ID") ||
                                                 identificador.includes("Id"))
                                                 return (<></>);
-                                            
-                                           
                                             if (dato == null) return (<td key={i}>---</td>)
                                             return (<td key={i}>{dato}</td>);
                                         })
