@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../styles/Table.css';
 import { NavLink } from "react-router-dom";
 
-export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, stateHandle }) => {
+export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, stateHandle, eyeurl }) => {
     return (
         <article className="tableArticle">
             <table>
@@ -35,8 +35,8 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                                             if (identificador.startsWith("id") || identificador.startsWith("Id") || identificador.startsWith("ID") ||
                                                 identificador.includes("Id"))
                                                 return (<></>);
-                                            if (typeof dato === "string" && dato.includes("Ver(boton)"))
-                                            return (<td key={i}><NavLink to="/deposits" className={"BotonVerTabla"}></NavLink></td>);
+                                            
+                                           
                                             if (dato == null) return (<td key={i}>---</td>)
                                             return (<td key={i}>{dato}</td>);
                                         })
@@ -44,7 +44,7 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                                     {
                                         columnaEditar ?
                                             <td className="tablaFilaEditar" >
-                                                <NavLink to="/deposits" className="BotonVerTabla" title="Ver detalles">
+                                                <NavLink to={eyeurl} className="BotonVerTabla" title="Ver detalles">
                                                  <span className="material-symbols-outlined" >
                                                     visibility
                                                  </span>
