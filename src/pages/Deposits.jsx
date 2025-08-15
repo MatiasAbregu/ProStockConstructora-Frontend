@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { ButtonMenu } from "../components/ButtonMenu";
-import {BotonAgregar} from "../components/BotonAgregar";
-import { BotonVer } from "../components/BotonVer";
-import { BotonEliminar } from "../components/BotonEliminar";
 import { Table } from "../components/Table";
 import "../styles/Deposits.css";
 
@@ -24,35 +21,27 @@ export const Deposits = () => {
     <>
       <Sidebar />
       <section className="Deposits">
-        <h2>Administrar Depósitos</h2>
+        <h2>Administrar Depósitos: Obra Pepe</h2>
         <Table
-          columnas={["Codigo", "Direccion", "Obra"]}
-          columnaEditar={true}
+          columnas={["Codigo - tipo Deposito"]}
+          columnaEditar={true} eyeurl={"/materials"}
           datos={[
             {
-              "Codigo": "DEP001",
-              "Direccion": "Calle Falsa 123",
-              "Obra": "Edificio Central"
+              "Codigo": "DEP001- Buen estado",
+              
             },
             {
-              "Codigo": "DEP002",
-              "Direccion": "Avenida Siempre Viva 456",
-              "Obra": "Plaza Mayor"
+              "Codigo": "DEP002- En Uso",
+              
             },
             {
-              "Codigo": "DEP003",
-              "Direccion": "Boulevard de los Sueños Rotos 789",
-              "Obra": "Parque Industrial"
+              "Codigo": "DEP003- Desechos",
+              
             }
-          ]
-        }
-        modalHandle={setModal}
-          idHandle={setIdUpdate} 
-        /><BotonAgregar>ADMINISTRAR STOCK</BotonAgregar>
-        <BotonVer>VER DEPOSITOS</BotonVer>
-        <BotonEliminar>ELIMINAR DEPOSITOS</BotonEliminar>
+
+        ]}
+      />
       </section>
     </>
   );
 };
-
