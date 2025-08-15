@@ -17,7 +17,7 @@ td {
     text-align: center;
     border-radius: 10px;
     word-break: normal;
-    max-width: 500px;
+    max-width: 200px;
 }
 
 th {
@@ -86,3 +86,5 @@ tr td:nth-child(7) {
 .tablaFilaEditar span:hover:nth-child(2) {
     background-color: #c24444;
 }
+
+

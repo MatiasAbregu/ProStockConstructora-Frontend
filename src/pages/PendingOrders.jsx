@@ -1,14 +1,13 @@
 import { useEffect } from "react";
-import "../styles/Home.css";
 import { Sidebar } from "../components/Sidebar";
-import { ButtonMenu } from "../components/ButtonMenu";
-import { PendingOrders } from "./PendingOrders";
 import { Table } from "../components/Table";
-import ButtonMany from "./ButtonMany";
+import { useState } from "react";
+import { Form } from "../components/Form";
+import "../styles/Table.css";
 
-export const Home = () => {
+export const PendingOrders = () => {
   useEffect(() => {
-    document.title = "Inicio - ProStockConstructora";
+    document.title = "Órdenes pendientes - ProStockConstructora";
 
     const rootDiv = document.getElementById("root");
     rootDiv.className = "pagedivided";
@@ -17,13 +16,9 @@ export const Home = () => {
   return (
     <>
       <Sidebar />
-      <section className="Home">
-        <h1>Pedidos pendientes:</h1>
-        <div className="button-container">
-          <ButtonMany></ButtonMany>
-        </div>
+      <section className="PendingOrders">
         <Table
-          columnas={["Código - Nombre - Empresa", "Estado"]}
+          columnas={["Código - Nombre - Empresa", "Estado"]} 
           datos={[
             {
               codigo: "1 - Parque Industrial Norte / G.C.Construcciones",
@@ -42,4 +37,4 @@ export const Home = () => {
       </section>
     </>
   );
-};
+}

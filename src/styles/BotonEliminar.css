@@ -1,21 +1,21 @@
 .btnEliminarM
 {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    background-color: #564caf; /* Rojo claro */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #564caf; 
     border: none;
     color: white;
     padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
+    cursor: pointer;
     border-radius: 8px;
-
 }
 .btnEliminarM:hover {
     background-color: #564caf; /* Rojo oscuro */

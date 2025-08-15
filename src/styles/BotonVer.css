@@ -1,14 +1,10 @@
 .btnVer{
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    position: fixed;
-
-    position: relative;
-    bottom: 20px;
+   
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    
     background-color: #564caf; 
     border: none;
     color: white;

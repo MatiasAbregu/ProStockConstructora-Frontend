@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../styles/Table.css';
+import { NavLink } from "react-router-dom";
 
 export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, stateHandle }) => {
     return (
@@ -34,20 +35,30 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                                             if (identificador.startsWith("id") || identificador.startsWith("Id") || identificador.startsWith("ID") ||
                                                 identificador.includes("Id"))
                                                 return (<></>);
+                                            if (typeof dato === "string" && dato.includes("Ver(boton)"))
+                                            return (<td key={i}><NavLink to="/deposits" className={"BotonVerTabla"}></NavLink></td>);
                                             if (dato == null) return (<td key={i}>---</td>)
                                             return (<td key={i}>{dato}</td>);
                                         })
                                     }
                                     {
                                         columnaEditar ?
-                                            <td className="tablaFilaEditar" style={{ minWidth: "120px" }}>
-                                                <span className="material-symbols-outlined" onClick={() => {
+                                            <td className="tablaFilaEditar" >
+                                                <NavLink to="/deposits" className="BotonVerTabla" title="Ver detalles">
+                                                 <span className="material-symbols-outlined" >
+                                                    visibility
+                                                 </span>
+                                                </NavLink>                                                
+                                                <span className="material-symbols-outlined" title="Editar" onClick={() => {
                                                     modalHandle(true);
                                                     idHandle(id);
                                                 }}>edit_square</span>
                                                 <span className="material-symbols-outlined" onClick={() => {
                                                     stateHandle(id);
                                                 }}>{estado ? "do_not_disturb_on" : !estado ? "add_circle" : "do_not_disturb_on"}</span>
+                                                <span className="material-symbols-outlined" title="Eliminar"> 
+                                                     delete
+                                                </span>
                                             </td>
                                             :
                                             <></>

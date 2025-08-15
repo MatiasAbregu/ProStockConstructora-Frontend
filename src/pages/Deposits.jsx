@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { ButtonMenu } from "../components/ButtonMenu";
 import {BotonAgregar} from "../components/BotonAgregar";
@@ -17,6 +17,9 @@ export const Deposits = () => {
     rootDiv.className = "pagedivided";
   }, []);
 
+  const [modal, setModal] = useState(false);
+  const [idUpdate, setIdUpdate] = useState(0);
+  
   return (
     <>
       <Sidebar />
@@ -41,7 +44,10 @@ export const Deposits = () => {
               "Direccion": "Boulevard de los Sueños Rotos 789",
               "Obra": "Parque Industrial"
             }
-          ]} 
+          ]
+        }
+        modalHandle={setModal}
+          idHandle={setIdUpdate} 
         /><BotonAgregar>ADMINISTRAR STOCK</BotonAgregar>
         <BotonVer>VER DEPOSITOS</BotonVer>
         <BotonEliminar>ELIMINAR DEPOSITOS</BotonEliminar>

@@ -34,12 +34,6 @@ const navLinkClass = ({ isActive }) => isActive ? "sidebar-link active" : "side-
           </NavLink>
         </li>
         <li>
-          <NavLink to="/deposits" className={navLinkClass}>
-            Depósitos &nbsp;
-            <span className="material-symbols-outlined">warehouse</span>
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/construction-work" className={navLinkClass}>
             Obras &nbsp;
             <span className="material-symbols-outlined">auto_towing</span>

@@ -17,17 +17,27 @@ export const Materials = () => {
     rootDiv.className = "pagedivided";
   }, []);
 
+  const Lotes = [
+    {codigo: "ce_P", material: "Cemento", descripcion: "Cemento Portland", cantidad: 50, unidad: "BolsaX50kg"},
+    {codigo: "ce_B", material: "Cemento", descripcion: "Cemento Blanco", cantidad: 50, unidad: "BolsaX50kg"},
+    {codigo: "ac_A", material: "Acero", descripcion: "Aceros de alta resistencia 40mm", cantidad: 50, unidad: "kg/m³"},
+    {codigo: "ac_B", material: "Acero", descripcion: "Aceros de baja resistencia 20mm", cantidad: 50, unidad: "kg/m³"},
+    {codigo: "al_E", material: "Aluminio", descripcion: "Aluminio para estructuras", cantidad: 50, unidad: "kg/m³"},
+    {codigo: "al_R", material: "Aluminio", descripcion: "Aluminio para revestimiento", cantidad: 50, unidad: "kg/m³"}
+  ]
+
   const[modal, setModal] = useState(false);
   
   return (
     <>
       {
          modal ? 
-         <Form title={"Añadir material"} buttonMsg={"Añadir"} closeModal={function(){setModal(false)}} inputs={[
+         <Form title={"Añadir Lote:"} buttonMsg={"Añadir"} closeModal={function(){setModal(false)}} inputs={[
           {
-            "type": "text",
-            "info": "Código del material",
-            "required": true
+            "type": "select",
+            "info": "Código de Lote",
+            "required": true,
+            "select": ["ce_P","ce_B","ac_A"],
           },
           {
             "type": "text",
@@ -61,65 +71,47 @@ export const Materials = () => {
 
       <Sidebar />
       <section className="Materials">
-        <h1>Administrar Materiales:</h1>
-        <BotonAnadir setOnClick={() => setModal(true)}>Añadir material</BotonAnadir>
+        <h1>Administrar materiales:</h1>
+        <BotonAnadir setOnClick={() => setModal(true)}>Añadir Material</BotonAnadir>
         <Table
-          columnas={["Código", "Nombre", "Descripción", "Cantidad", "Unidad", "Vencimiento"]}
+          columnas={["Código", "Nombre", "Unidad"]}
           columnaEditar={true}
           datos={
              [
               {
                   "codigo": "ce_P",
                   "nombre": "Cemento",
-                  "descripcion": "Cemento Portland",
-                  "cantidad": 15,
-                  "unidad": "BolsaX50kg",
-                  "vencimiento": "09/09/2025"
+                  "unidad": "kg",
               },
           
               {
                   "codigo": "ce_B",
                   "nombre": "Cemento",
-                  "descripcion": "Cemento Blanco",
-                  "cantidad": 20,
-                  "unidad": "BolsaX30kg",
-                  "vencimiento": "05/12/2025"
+                  "unidad": "kg",
               },
              
               {
                   "codigo": "ac_A",
                   "nombre": "Aceros",
-                  "descripcion": "Aceros de alta resistencia 40mm",
-                  "cantidad": 20,
                   "unidad": "kg/m³",
-                  "vencimiento": "02/08/2025"
               },
           
               {
                   "codigo": "ac_B",
-                  "nombre": "Aceros",
-                  "descripcion": "Aceros de baja resistencia 20mm",
-                  "cantidad": 150,
+                  "nombre": "Aceros",         
                   "unidad": "kg/m³",
-                  "vencimiento": "19/10/2025"
               },
           
               {
                   "codigo": "al_E",
-                  "nombre": "Aluminio",
-                  "descripcion": "Aluminio para estructuras",
-                  "cantidad": 300,
+                  "nombre": "Aluminio",       
                   "unidad": "kg/m³",
-                  "vencimiento": "30/11/2025"
               },
           
               {
                   "codigo": "al_R",
                   "nombre": "Aluminio",
-                  "descripcion": "Aluminio para revestimientos",
-                  "cantidad": 250,
                   "unidad": "kg/m³",
-                  "vencimiento": "09/09/2025"
               } 
             ]
           }

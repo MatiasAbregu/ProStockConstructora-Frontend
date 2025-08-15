@@ -51,25 +51,19 @@ export const ConstructionWork = () => {
       <section className="ConstructionWork">
         <BotonAnadir setOnClick={()=> setModal(true)}>Añadir obra</BotonAnadir>
         <Table
-          columnas={["Código", "Nombre de obra", "Empresa", "Estado"]}
+          columnas={["Código - Nombre - Empresa", "Estado"]} 
           columnaEditar={true}
           datos={[
             {
-              codigo: 1,
-              nombreObra: "Parque Industrial Norte",
-              empresa: "G.C. CONSTRUCCIONES S.A.S",
+              codigo: "1 - Parque Industrial Norte / G.C.Construcciones",
               estado: "En curso",
             },
             {
-              codigo: 2,
-              nombreObra: "Proyecto Oasis XXI",
-              empresa: "MURO Arquitectos",
+              codigo: "2 - Proyecto Oasis XXI / MURO Arquitectos",
               estado: "Finalizada",
             },
             {
-              codigo: 3,
-              nombreObra: "Complejo Los Álamos",
-              empresa: "URBICOR Construcciones",
+              codigo: "3 - Edificio Central / Constructora ABC",
               estado: "En pausa",
             },
           ]}
