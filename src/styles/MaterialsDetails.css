@@ -1,0 +1,15 @@
+.MaterialsDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.MaterialsDetails table {
+    width: 100%;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+    ;
+}

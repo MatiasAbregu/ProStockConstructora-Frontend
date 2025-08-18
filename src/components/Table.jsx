@@ -64,6 +64,7 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                                             :
                                             <></>
                                     }
+                                    
                                 </tr>
                             )
                         }

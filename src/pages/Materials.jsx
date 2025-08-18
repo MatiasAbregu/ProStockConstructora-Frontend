@@ -76,6 +76,7 @@ export const Materials = () => {
           <BotonAnadir setOnClick={() => setModal(true)}>Añadir Material</BotonAnadir>
         </div>
         <Table
+          eyeurl={"/materials/eye"}
           columnas={["Código", "Nombre", "Unidad"]}
           columnaEditar={true}
           datos={

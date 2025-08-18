@@ -59,11 +59,6 @@ export const Home = () => {
 
               ]} columnaEditar={true} columnas={["Codigo - Nombre - Marca", "Unidad"]} /> :
               undefined
-
-
-
-
-
         }
       </section>
     </>
