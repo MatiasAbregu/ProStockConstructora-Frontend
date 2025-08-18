@@ -1,10 +1,17 @@
 .Users {
   width: 85%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   overflow-y: auto;
+}
+
+.Users:has(.upPart){
+  flex-direction: column;
+}
+
+.Users .upPart {
+  display: flex;
+  width: 100%;
 }
 
 @media screen and (max-width: 800px) {

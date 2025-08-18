@@ -3,8 +3,8 @@ import { BotonAnadir } from "../../components/BotonAnadir";
 import { BotonBuscar } from "../../components/BotonBuscar";
 import { Table } from "../../components/Table";
 import { Sidebar } from "../../components/Sidebar";
+import { LogOut } from "../../components/LogOut";
 import { Navigate } from "react-router-dom";
-import { InputForm } from "../../components/InputForm";
 
 import '../../styles/Users.css';
 import '../../styles/Modal.css';
@@ -18,7 +18,7 @@ import EmpresaServicio from "../../services/EmpresaServicio";
 
 export const UsersView = () => {
 
-    const [rol, setRol] = useState("Superadministrador");
+    const [rol, setRol] = useState("Superadministrador"); // Cambiar rol a Admin desde acá 
     const [datos, setDatos] = useState([]);
     const [datosEmpresas, setDatosEmpresas] = useState([]);
 
@@ -104,27 +104,40 @@ export const UsersView = () => {
             }
             <Sidebar />
             <section className="Users">
-                {
-                    rol == "Superadministrador" ?
-                        <>
-                            <BotonBuscar>Buscar</BotonBuscar>
-                            <BotonAnadir setOnClick={() => setModal(true)}>Añadir administrador</BotonAnadir>
-                            <Table
-                                columnas={["Nombre de usuario", "Email", "Teléfono", "Estado", "Empresa"]}
-                                columnaEditar={true}
-                                datos={datos}
-                            />
-                        </>
-                        : rol == "Administrador" ?
+                <>
+                    {
+                        rol == "Superadministrador" ?
                             <>
-                                <BotonAnadir>Añadir usuario</BotonAnadir>
+                                <LogOut />
+                                <div className="upPart">
+                                    <BotonBuscar>Buscar</BotonBuscar>
+                                    <BotonAnadir setOnClick={() => setModal(true)}>Añadir administrador</BotonAnadir>
+                                </div>
                                 <Table
-                                    columnas={["Código", "Nombre de usuario", "Empresa", "Rol", "Estado"]}
+                                    columnas={["Nombre de usuario", "Email", "Teléfono", "Estado", "Empresa"]}
                                     columnaEditar={true}
                                     datos={datos}
-                                /></> : <Navigate to={"/not-access"} />
-                }
+                                />
+                            </>
+                            : rol == "Administrador" ?
+                                <>
+                                    <LogOut />
+                                    <div className="upPart">
+                                        <BotonBuscar>Buscar</BotonBuscar>
+                                        <BotonAnadir>Añadir usuario</BotonAnadir>
+                                    </div>
+                                    <Table
+                                        columnas={["Código", "Nombre de usuario", "Empresa", "Rol", "Estado"]}
+                                        columnaEditar={true}
+                                        datos={datos}
+                                    /></> : <Navigate to={"/not-access"} />
+                    }
+                </>
             </section>
         </>
     );
 }
+
+
+/// OLD CODE
+

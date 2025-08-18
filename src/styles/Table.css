@@ -1,5 +1,5 @@
 .tableArticle {
-    width: 95%;
+    width: 100%;
     height: 80vh;
     overflow: auto;
 }
@@ -18,15 +18,6 @@ td {
     border-radius: 10px;
     word-break: normal;
     max-width: 200px;
-}
-
-th {
-    background-color: #6884ff;
-    font-weight: bold;
-    font-size: 1.42rem;
-    color: white;
-    position: sticky;
-    top: 0;
 }
 
 td,
@@ -64,8 +55,14 @@ tr td:nth-child(7) {
     background-color: #b5c4fc;
 }
 
+.colEditar {
+    max-width: none;
+    width: auto;
+    min-width: 150px;
+}
+
 .tablaFilaEditar span {
-    margin: 0 3%;
+    margin: 0 2%;
     cursor: pointer;
     font-size: 2rem;
     transition: ease .3s all;
@@ -75,16 +72,28 @@ tr td:nth-child(7) {
     color: black;
 }
 
+th {
+    background-color: #6884ff;
+    font-weight: bold;
+    font-size: 1.42rem;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+
 .tablaFilaEditar span:hover {
     color: white;
 }
 
-.tablaFilaEditar span:hover:nth-child(1) {
+.tablaFilaEditar .seeButton:hover {
+    background-color: #293d96;
+}
+
+.tablaFilaEditar .editButton:hover {
     background-color: #1aa958;
 }
 
-.tablaFilaEditar span:hover:nth-child(2) {
+.tablaFilaEditar .disableButton:hover, .tablaFilaEditar .deleteButton:hover {
     background-color: #c24444;
 }
-
-

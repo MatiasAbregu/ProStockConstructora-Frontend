@@ -57,12 +57,7 @@ const navLinkClass = ({ isActive }) => isActive ? "sidebar-link active" : "side-
             <span className="material-symbols-outlined">groups</span>
           </NavLink>
         </li>
-        <li>
-          <a href="/log-out" className={navLinkClass}>
-            Cerrar sesión &nbsp;
-            <span className="material-symbols-outlined">logout</span>
-          </a>
-        </li>
+
       </ul>
     </div>
   );

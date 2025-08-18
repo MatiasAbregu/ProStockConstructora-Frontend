@@ -16,7 +16,7 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                         }
                         {
                             columnaEditar ?
-                                <th>Editar</th>
+                                <th className="colEditar">Editar</th>
                                 :
                                 <></>
                         }
@@ -42,20 +42,23 @@ export const Table = ({ columnas, datos, columnaEditar, modalHandle, idHandle, s
                                     {
                                         columnaEditar ?
                                             <td className="tablaFilaEditar" >
-                                                <NavLink to={eyeurl} className="BotonVerTabla" title="Ver detalles">
-                                                 <span className="material-symbols-outlined" >
-                                                    visibility
-                                                 </span>
-                                                </NavLink>                                                
-                                                <span className="material-symbols-outlined" title="Editar" onClick={() => {
+                                                {
+                                                    eyeurl ?
+                                                        <NavLink to={eyeurl} title="Ver detalles">
+                                                            <span className="material-symbols-outlined seeButton" >
+                                                                visibility
+                                                            </span>
+                                                        </NavLink> : undefined
+                                                }
+                                                <span className="material-symbols-outlined editButton" title="Editar" onClick={() => {
                                                     modalHandle(true);
                                                     idHandle(id);
                                                 }}>edit_square</span>
-                                                <span className="material-symbols-outlined" onClick={() => {
+                                                <span className="material-symbols-outlined disableButton" onClick={() => {
                                                     stateHandle(id);
-                                                }}>{estado ? "do_not_disturb_on" : !estado ? "add_circle" : "do_not_disturb_on"}</span>
-                                                <span className="material-symbols-outlined" title="Eliminar"> 
-                                                     delete
+                                                }}>{estado ? "do_not_disturb_on" : "add_circle"}</span>
+                                                <span className="material-symbols-outlined deleteButton" title="Eliminar">
+                                                    delete
                                                 </span>
                                             </td>
                                             :

@@ -1,14 +1,18 @@
-.buttonmany{
- background-color: rgb(1, 121, 233);
- color: rgb(255, 255, 255);
- font-size: 1.5rem;
- border: none;
- border-radius: 5px;
- cursor: pointer;
- transition: background-color 0.3s ease;
- position: absolute;
- top: 1%;
- right: 0.5%;
- width: 10%;
-}
+.buttonmany {
+    background-color: #0179e9;
+    color: #ffffff;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0 3%;
 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="6,9 12,15 18,9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
