@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 15%;
+  width: 0%;
   height: 100%;
   background: linear-gradient(-120deg, #5681c7 30%, #40619b 70%);
   animation: slideInLeftToRight 0.4s normal linear;
@@ -11,12 +11,16 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  transition: transform 0.3s ease;
-  transform: translate(-100%);
+  transition: width 0.1s ease;
+  user-select: none;
 }
 
-.sidebar-open {
-  transform: translateX(0);
+.sidebar.sidebar-open {
+  width: 13%;
+}
+
+.sidebar:not(.sidebar-open) ul li {
+  display: none;
 }
 
 /* LISTA QUE TIENE LOS BOTONES DEL SIDEBAR*/
@@ -40,25 +44,24 @@
   transition: background-color 0.3s ease;
 }
 
-.sidebar ul li:hover{
+.sidebar ul li:hover {
   background: linear-gradient(-120deg, #3d66ac 30%, #2c4d86 70%);
   cursor: pointer;
 }
 
 /* LETRAS DE LOS BOTONES*/
-.sidebar ul li a{
+.sidebar ul li a {
   display: flex;
   font-size: 1.1rem;
   text-decoration: none;
   color: white;
   font-family: "Roboto Condensed", sans-serif;
   padding: 10px;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
 }
 
-.sidebar ul li:hover a{
+.sidebar ul li:hover a {
   color: white;
 }
 
@@ -71,22 +74,23 @@
   background: linear-gradient(-120deg, #3d66ac 30%, #2c4d86 70%);
 }
 
-@media screen and (max-width: 1300px) {
-}
-
 .hamburger-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 10px;
+
   z-index: 1001;
   background: #333;
   border: none;
   border-radius: 8px;
   padding: 12px;
+
   cursor: pointer;
-  display: block;
   transition: all 0.3s ease;
-  box-shadow: 0 02px 5px rgba(0, 0, 0, 0.2);
 }
 
 .hamburger-button:hover {
@@ -98,22 +102,3 @@
   color: white;
   font-size: 24px;
 }
-
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  display: block;
-}
-
-
-
-
-
-
-
-
