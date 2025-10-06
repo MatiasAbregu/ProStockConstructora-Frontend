@@ -7,16 +7,12 @@
   height: 100%;
   background: linear-gradient(-120deg, #5681c7 30%, #40619b 70%);
   animation: slideInLeftToRight 0.4s normal linear;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
   transition: width 0.1s ease;
   user-select: none;
 }
 
 .sidebar.sidebar-open {
-  width: 13%;
+  width: 200px;
 }
 
 .sidebar:not(.sidebar-open) ul li {
@@ -101,4 +97,11 @@
 .hamburger-button .material-symbols-outlined {
   color: white;
   font-size: 24px;
+}
+
+@media screen and (max-width: 1000px) {
+  /* BOTONES DEL SIDEBAR*/
+  .sidebar ul li {
+    padding: .5vh 0;
+  }
 }

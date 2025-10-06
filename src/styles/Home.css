@@ -21,8 +21,7 @@
 }
 
 .Home .tableArticle {
-  width: 60%; /* controla el ancho de la tabla */
-  margin-left: 1%;
+  width: 100%; /* controla el ancho de la tabla */
 }
 
 .Home h1 {
