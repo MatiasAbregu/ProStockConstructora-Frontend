@@ -51,7 +51,7 @@ export const Home = () => {
         <Table datos={[{
           "codigo":"01-Cemento-Loma Negra",
           "Unidad": "Kg",
-        },{ "codigo":"02-Arena-Holmic",
+        },{ "codigo":"02-Arena-Holcim",
           "unidad":"Kg",
 
         }
