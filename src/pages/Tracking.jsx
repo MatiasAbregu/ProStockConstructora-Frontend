@@ -20,7 +20,7 @@ export const Tracking = () => {
         <h1>Administrar pedidos:</h1>
         <Table
           columnas={["Nº Pedido", "Origen - Destino", "Fecha Entrega / Estimada", "Fecha recibida Prod"]}
-          columnaEditar={true}
+          opciones={["editar", "eliminar"]}
           datos={
             [
               {
@@ -47,8 +47,6 @@ export const Tracking = () => {
             ]
           }
         />
-
-
       </section>
     </>
   );

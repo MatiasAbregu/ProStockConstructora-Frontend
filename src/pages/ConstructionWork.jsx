@@ -52,8 +52,7 @@ export const ConstructionWork = () => {
         <BotonAnadir setOnClick={() => setModal(true)}>Añadir obra</BotonAnadir>
         <Table
           columnas={["Código - Nombre - Empresa", "Estado"]}
-          eyeurl={"/deposits"}
-          columnaEditar={true}
+          opciones={[{eye: "/deposits"}, "editar", "eliminar"]}
           datos={[
             {
               codigo: "1 - Parque Industrial Norte / G.C.Construcciones",

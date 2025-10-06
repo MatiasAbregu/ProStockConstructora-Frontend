@@ -23,7 +23,7 @@ export const Deposits = () => {
         <h2>Administrar Depósitos: Obra Pepe</h2>
         <Table
           columnas={["Codigo - tipo Deposito"]}
-          columnaEditar={true} eyeurl={"/materials"}
+          opciones={[{eye: "/materials"}, "editar", "eliminar"]}
           datos={[
             {
               "Codigo": "DEP001- Buen estado",

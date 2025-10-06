@@ -53,11 +53,8 @@ export const Home = () => {
               }, {
                 "codigo": "02-Arena-Holmic",
                 "unidad": "Kg",
-
               }
-
-
-              ]} columnaEditar={true} columnas={["Codigo - Nombre - Marca", "Unidad"]} /> :
+              ]} columnas={["Codigo - Nombre - Marca", "Unidad"]} /> :
               undefined
         }
       </section>

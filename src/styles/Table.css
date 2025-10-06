@@ -58,7 +58,7 @@ tr td:nth-child(7) {
 .colEditar {
     max-width: none;
     width: auto;
-    min-width: 150px;
+    min-width: 160px;
 }
 
 .tablaFilaEditar span {
@@ -94,7 +94,46 @@ th {
     background-color: #1aa958;
 }
 
-.tablaFilaEditar .disableButton:hover, .tablaFilaEditar .deleteButton:hover {
+.tablaFilaEditar .contactButton:hover {
+    background-color: #1f3a57;
+}
+
+.tablaFilaEditar .disableButton:hover,
+.tablaFilaEditar .deleteButton:hover {
     background-color: #c24444;
 }
 
+.tablaResponsiva {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tablaResponsiva div {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3% 0;
+    width: 90%;
+    border-radius: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1% 0;
+}
+
+.tablaResponsiva .encabezado {
+    padding: 4% 0;
+    background-color: #4768ff;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.tablaResponsiva p {
+    margin: 1% 0;
+}
+
+.tablaResponsiva div:not(.encabezado) {
+    background-color: #87a1ff;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+}

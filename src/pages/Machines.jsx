@@ -64,7 +64,7 @@ export const Machines = () => {
         </div>
         <Table
           columnas={["Código", "Nombre", "Descripción", "Fecha Ult. Mantenimiento", "Disponibilidad"]}
-          columnaEditar={true}
+          opciones={["editar", "eliminar"]}
           datos={
             [
               {

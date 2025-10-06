@@ -78,7 +78,7 @@ export const Materials = () => {
         <Table
           eyeurl={"/materials/eye"}
           columnas={["Código", "Nombre", "Unidad"]}
-          columnaEditar={true}
+          opciones={[{eye: "/materials/eye"}, "editar", "eliminar"]}
           datos={
             [
               {
