@@ -1,5 +1,5 @@
 .Home {
-  width: 85%;
+  width: 100%;
   display: flex;
   flex-direction: column; /* el título arriba y la tabla abajo */
   overflow-y: auto;
