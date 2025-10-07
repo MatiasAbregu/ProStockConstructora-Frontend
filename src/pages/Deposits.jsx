@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
-import { ButtonMenu } from "../components/ButtonMenu";
 import { Table } from "../components/Table";
 import "../styles/Deposits.css";
-
-
+import { LogOut } from '../components/LogOut';
 
 export const Deposits = () => {
   useEffect(() => {
@@ -21,10 +19,11 @@ export const Deposits = () => {
     <>
       <Sidebar />
       <section className="Deposits">
+        <LogOut />
         <h2>Administrar Depósitos: Obra Pepe</h2>
         <Table
           columnas={["Codigo - tipo Deposito"]}
-          columnaEditar={true} eyeurl={"/materials"}
+          opciones={[{eye: "/materials"}, "editar", "eliminar"]}
           datos={[
             {
               "Codigo": "DEP001- Buen estado",

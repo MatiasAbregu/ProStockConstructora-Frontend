@@ -3,10 +3,20 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 15%;
+  width: 0%;
   height: 100%;
   background: linear-gradient(-120deg, #5681c7 30%, #40619b 70%);
   animation: slideInLeftToRight 0.4s normal linear;
+  transition: width 0.1s ease;
+  user-select: none;
+}
+
+.sidebar.sidebar-open {
+  width: 200px;
+}
+
+.sidebar:not(.sidebar-open) ul li {
+  display: none;
 }
 
 /* LISTA QUE TIENE LOS BOTONES DEL SIDEBAR*/
@@ -17,6 +27,7 @@
   justify-content: center;
   height: 100%;
   padding: 0;
+  margin: 0;
 }
 
 /* BOTONES DEL SIDEBAR*/
@@ -29,21 +40,24 @@
   transition: background-color 0.3s ease;
 }
 
-.sidebar ul li:hover{
+.sidebar ul li:hover {
   background: linear-gradient(-120deg, #3d66ac 30%, #2c4d86 70%);
   cursor: pointer;
 }
 
 /* LETRAS DE LOS BOTONES*/
-.sidebar ul li a{
+.sidebar ul li a {
   display: flex;
-  font-size: 1.25vw;
+  font-size: 1.1rem;
   text-decoration: none;
   color: white;
   font-family: "Roboto Condensed", sans-serif;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.sidebar ul li:hover a{
+.sidebar ul li:hover a {
   color: white;
 }
 
@@ -56,5 +70,38 @@
   background: linear-gradient(-120deg, #3d66ac 30%, #2c4d86 70%);
 }
 
-@media screen and (max-width: 1300px) {
+.hamburger-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 10px;
+  left: 10px;
+
+  z-index: 1001;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hamburger-button:hover {
+  background: #555;
+  transform: scale(1.05);
+}
+
+.hamburger-button .material-symbols-outlined {
+  color: white;
+  font-size: 24px;
+}
+
+@media screen and (max-width: 1000px) {
+  /* BOTONES DEL SIDEBAR*/
+  .sidebar ul li {
+    padding: .5vh 0;
+  }
 }

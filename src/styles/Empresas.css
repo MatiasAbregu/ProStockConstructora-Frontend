@@ -7,6 +7,12 @@
   overflow-y: auto;
 }
 
+.Enterprises .upPart {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .alertContainer {
   position: absolute;
   width: 40%;

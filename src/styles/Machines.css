@@ -4,6 +4,11 @@
   flex-direction: column;
 }
 
+.Machines .upPart {
+  display: flex;
+  margin: 1% 0;
+}
+
 .Machines h1 {
   font-size: 40px;
   color: #333;

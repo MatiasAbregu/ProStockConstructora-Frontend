@@ -3,22 +3,30 @@
   display: flex;
   flex-direction: column; /* el título arriba y la tabla abajo */
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.Home .upPart {
+  display: flex;
+  width: 98%;
+  margin: 0 1%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (max-width: 1300px) {
   .Home {
-    width: 80%;
+    width: 85%;
   }
 }
 
 .Home .tableArticle {
-  width: 50%; /* controla el ancho de la tabla */
-  margin-left: 1%;
+  width: 100%; /* controla el ancho de la tabla */
 }
 
 .Home h1 {
   margin-left: 2%;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   font-size: 2.5rem;
   color: #000; /* negro, o cámbialo según el fondo */
 }

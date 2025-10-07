@@ -5,6 +5,8 @@ import { BotonAnadir } from "../components/BotonAnadir";
 import { BotonBuscar } from "../components/BotonBuscar";
 import { InputForm } from "../components/InputForm";
 import { useForm } from "react-hook-form";
+import { LogOut } from '../components/LogOut';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import '../styles/Empresas.css';
@@ -24,7 +26,7 @@ export const Enterprises = () => {
 
   // Activamos y desactivamos desde acá el modal con el formulario
   const [modal, setModal] = useState(false);
-  
+
   const [alertMSGAPI, setAlertMSGAPI] = useState(false);
   const [resultAPI, setResultAPI] = useState();
 
@@ -115,7 +117,7 @@ export const Enterprises = () => {
   const CerrarModal = () => {
     setModal(false);
     if (idUpdate != 0 || !resultAPI.includes("Error")) reset();
-    if(!resultAPI.includes("Error")) RecargarTabla();
+    if (!resultAPI.includes("Error")) RecargarTabla();
     setIdUpdate(0);
   }
 
@@ -135,7 +137,7 @@ export const Enterprises = () => {
         modal ?
           <Form title={idUpdate == 0 ? "Registrar empresa" : "Actualizar empresa"}
             buttonMsg={idUpdate == 0 ? "Añadir empresa" : "Actualizar empresa"}
-            handleSubmit={handleSubmit(onSubmit)} closeModal={CerrarModal} 
+            handleSubmit={handleSubmit(onSubmit)} closeModal={CerrarModal}
             setAlertMSGAPI={setAlertMSGAPI} alertMSGAPI={alertMSGAPI} resultAPI={resultAPI}
             inputs={[
               {
@@ -189,8 +191,11 @@ export const Enterprises = () => {
       }
       <Sidebar />
       <section className="Enterprises">
-        <BotonBuscar>Buscar</BotonBuscar>
-        <BotonAnadir setOnClick={() => setModal(true)}>Añadir empresa</BotonAnadir>
+        <LogOut />
+        <div className="upPart">
+          <BotonBuscar>Buscar</BotonBuscar>
+          <BotonAnadir setOnClick={() => setModal(true)}>Añadir empresa</BotonAnadir>
+        </div>
         <Table
           columnas={["CUIT", "Nombre", "Razón social", "Estado", "Email", "Teléfono"]}
           columnaEditar={true}

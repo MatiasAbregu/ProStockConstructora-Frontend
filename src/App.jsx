@@ -9,9 +9,11 @@ import { Deposits } from "./pages/Deposits";
 import { ConstructionWork } from "./pages/ConstructionWork";
 import { Enterprises } from "./pages/Enterprises";
 import { Stadistics } from "./pages/Stadistics";
-import { MenuUsers } from "./pages/UsersPages/MenuUsers";
+// import { MenuUsers } from "./pages/UsersPages/MenuUsers";
 import { UsersView } from "./pages/UsersPages/UsersView";
 import { LogOut } from './pages/LogOut';
+import { MenuUsers } from "./pages/UsersPages/MenuUsers";
+import { MaterialsDetails } from "./pages/MaterialsDetails";
 
 function App() {
   return (
@@ -24,9 +26,10 @@ function App() {
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/deposits" element={<Deposits />} />
         <Route path="/construction-work" element={<ConstructionWork />} />
-        <Route path="/enterprises" element={<Enterprises />} />
+        {/* <Route path="/enterprises" element={<Enterprises />} /> */}
         <Route path="/stadistics" element={<Stadistics />} />
-        
+        <Route path="/materials/eye" element={<MaterialsDetails />} />
+
         <Route path="/users" element={<MenuUsers />} />
         <Route path="/users/users-view" element={<UsersView />} />
         <Route path="/log-out" element={<LogOut />} />

@@ -3,8 +3,8 @@ import { BotonAnadir } from "../../components/BotonAnadir";
 import { BotonBuscar } from "../../components/BotonBuscar";
 import { Table } from "../../components/Table";
 import { Sidebar } from "../../components/Sidebar";
+import { LogOut } from "../../components/LogOut";
 import { Navigate } from "react-router-dom";
-import { InputForm } from "../../components/InputForm";
 
 import '../../styles/Users.css';
 import '../../styles/Modal.css';
@@ -18,13 +18,17 @@ import EmpresaServicio from "../../services/EmpresaServicio";
 
 export const UsersView = () => {
 
-    const [rol, setRol] = useState("Superadministrador");
+    const [rol, setRol] = useState("Administrador"); // Cambiar rol a Admin desde acá 
     const [datos, setDatos] = useState([]);
-    const [datosEmpresas, setDatosEmpresas] = useState([]);
+    const [rolesBBDD, setRolesBBDD] = useState([]);
 
     const [modal, setModal] = useState(false);
 
+    const [alertMSGAPI, setAlertMSGAPI] = useState(false);
+    const [resultAPI, setResultAPI] = useState();
+
     const [idUpdate, setIdUpdate] = useState(0);
+    const [alertWithoutModal, setAlertWithoutModal] = useState(false);
 
     useEffect(() => {
         document.title = "Usuarios - ProStockConstructora";
@@ -37,6 +41,9 @@ export const UsersView = () => {
         if (rol == "Superadministrador") {
             UsuarioServicio.ObtenerAdministradores().then(datos => { setDatos(datos.data); });
             EmpresaServicio.obtenerEmpresasAAsociar().then(datos => { setDatosEmpresas(datos.data); });
+        } else if (rol == "Administrador") {
+            UsuarioServicio.ObtenerUsuariosEmpresa(1).then(datos => { setDatos(datos.data); })
+            UsuarioServicio.ObtenerRoles().then(datos => { setRolesBBDD(datos.data); })
         }
     }, [rol]);
 
@@ -44,7 +51,20 @@ export const UsersView = () => {
 
     // MODAL
     const onSubmit = () => {
+        if (idUpdate == 0) CrearUsuario(d);
+        else ActualizaEmpresa(d);
+    }
 
+    const CrearUsuario = (datos) => {
+        if (rol == "Superadministrador") {
+            UsuarioServicio.CrearUsuario(datos).then(d => {
+                setAlertMSGAPI(true);
+                setResultAPI(d.data);
+            }).catch(e => {
+                setAlertMSGAPI(true);
+                setResultAPI("Error:" + e.response.data);
+            });
+        }
     }
 
     const CerrarModal = () => {
@@ -75,7 +95,6 @@ export const UsersView = () => {
                             },
                             {
                                 "type": "email",
-                                "required": true,
                                 "icon": "mail",
                                 "register": register,
                                 "registerData": "Email",
@@ -84,7 +103,6 @@ export const UsersView = () => {
                             },
                             {
                                 "type": "tel",
-                                "required": true,
                                 "icon": "call",
                                 "register": register,
                                 "registerData": "Celular",
@@ -93,9 +111,10 @@ export const UsersView = () => {
                             },
                             {
                                 "type": "select",
-                                "select": datosEmpresas,
-                                "icon": "domain",
-                                "info": "Asocie este administrador a una empresa:"
+                                "select": rolesBBDD,
+                                "required": true,
+                                "icon": "assignment_ind",
+                                "info": "Asigne a este usuario su rol:"
                             }
                         ]}
                     />
@@ -104,27 +123,41 @@ export const UsersView = () => {
             }
             <Sidebar />
             <section className="Users">
-                {
-                    rol == "Superadministrador" ?
-                        <>
-                            <BotonBuscar>Buscar</BotonBuscar>
-                            <BotonAnadir setOnClick={() => setModal(true)}>Añadir administrador</BotonAnadir>
-                            <Table
-                                columnas={["Nombre de usuario", "Email", "Teléfono", "Estado", "Empresa"]}
-                                columnaEditar={true}
-                                datos={datos}
-                            />
-                        </>
-                        : rol == "Administrador" ?
+                <>
+                    {
+                        rol == "Administrador" ?
                             <>
-                                <BotonAnadir>Añadir usuario</BotonAnadir>
+                                <LogOut />
+                                <div className="upPart">
+                                    <BotonBuscar>Buscar</BotonBuscar>
+                                    <BotonAnadir setOnClick={() => setModal(true)}>Añadir usuario</BotonAnadir>
+                                </div>
                                 <Table
-                                    columnas={["Código", "Nombre de usuario", "Empresa", "Rol", "Estado"]}
-                                    columnaEditar={true}
+                                    columnas={["Nombre de usuario", "Estado", "Rol"]}
+                                    opciones={["contacto", "editar", "desactivar"]}
                                     datos={datos}
+                                    camposAExcluir={["id", "email", "telefono"]}
                                 /></> : <Navigate to={"/not-access"} />
-                }
+                    }
+                </>
             </section>
         </>
     );
 }
+
+
+/// OLD CODE
+// rol == "Superadministrador" ?
+//     <>
+//         <LogOut />
+//         <div className="upPart">
+//             <BotonBuscar>Buscar</BotonBuscar>
+//             <BotonAnadir setOnClick={() => setModal(true)}>Añadir administrador</BotonAnadir>
+//         </div>
+//         <Table
+//             columnas={["Nombre de usuario", "Email", "Teléfono", "Estado", "Empresa"]}
+//             columnaEditar={true}
+//             datos={datos}
+//         />
+//     </>
+//     : 

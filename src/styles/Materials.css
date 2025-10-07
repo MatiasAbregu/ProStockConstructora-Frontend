@@ -5,6 +5,11 @@
   background-color: rgb(255, 255, 255);
 }
 
+.Materials .upPart {
+  margin: 1% 0;
+  display: flex;
+}
+
 .Materials h1 {
   font-size: 40px;
   color: #333;
