@@ -3,7 +3,7 @@ import { InputForm } from "./InputForm";
 import '../styles/Form.css';
 
 // alertMSGAPI -> Decide si se muestra o no || setAlertMSGAPI se activa en el formulario principal y se desactiva desde acá
-export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal, alertMSGAPI, setAlertMSGAPI, resultAPI }) => {
+export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal }) => {
 
     const [modalForm, setModalForm] = useState(false);
 
@@ -11,23 +11,8 @@ export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal, alert
         setTimeout(() => setModalForm(true), 500);
     }, []);
 
-    const CloseModal = () => {
-        setModalForm(false);
-        closeModal();
-    }
-
     return (
-        <div className="modalBack" onClick={alertMSGAPI ? () => {
-            setAlertMSGAPI(false)
-            if (!resultAPI.includes("Error")) CloseModal();
-        } : undefined}>
-            {
-                alertMSGAPI ?
-                    <div className={`formResult ${resultAPI.includes("Error") ? "FRerror" : "FRexito"}`}>
-                        <p>{resultAPI.includes("Error:") ? resultAPI.split(":")[1] : resultAPI}</p>
-                    </div>
-                    : <></>
-            }
+        <div className="modalBack">
             {
                 modalForm ?
                     <form onSubmit={handleSubmit}>

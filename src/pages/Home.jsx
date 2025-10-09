@@ -28,33 +28,6 @@ export const Home = () => {
           <h1>Pedidos pendientes:</h1>
           <ButtonMany setOpciones={setOpciones}></ButtonMany>
         </div>
-<<<<<<< HEAD
-          {  
-          opciones==0?
-          <Table
-          columnas={["Código - Nombre - Empresa", "Estado"]}
-          datos={[
-            {
-              codigo: "1 - Parque Industrial Norte / G.C.Construcciones",
-              estado: "En curso",
-            },
-            {
-              codigo: "2 - Proyecto Oasis XXI / MURO Arquitectos",
-              estado: "Finalizada",
-            },
-            {
-              codigo: "3 - Edificio Central / Constructora ABC",
-              estado: "En pausa",
-            },
-          ]}
-        />: opciones==1?  
-        <Table datos={[{
-          "codigo":"01-Cemento-Loma Negra",
-          "Unidad": "Kg",
-        },{ "codigo":"02-Arena-Holcim",
-          "unidad":"Kg",
-
-=======
         {
           opciones == 0 ?
             <Table
@@ -83,7 +56,6 @@ export const Home = () => {
               }
               ]} columnas={["Codigo - Nombre - Marca", "Unidad"]} /> :
               undefined
->>>>>>> 0f458e18ce2174eda62866e05b1f014e91d49571
         }
       </section>
     </>

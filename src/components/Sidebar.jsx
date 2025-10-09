@@ -64,14 +64,8 @@ export const Sidebar = () => {
           </li>
           <li>
             <NavLink to="/materials" className={navLinkClass} onClick={closeSidebar}>
-              Materiales &nbsp;
+              Recursos &nbsp;
               <span className="material-symbols-outlined">construction</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/machines" className={navLinkClass} onClick={closeSidebar}>
-              Maquinarias &nbsp;
-              <span className="material-symbols-outlined">forklift</span>
             </NavLink>
           </li>
           <li>

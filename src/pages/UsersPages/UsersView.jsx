@@ -24,11 +24,9 @@ export const UsersView = () => {
 
     const [modal, setModal] = useState(false);
 
-    const [alertMSGAPI, setAlertMSGAPI] = useState(false);
-    const [resultAPI, setResultAPI] = useState();
-
-    const [idUpdate, setIdUpdate] = useState(0);
+    const [idUpdate, setIdUpdate] = useState("");
     const [alertWithoutModal, setAlertWithoutModal] = useState(false);
+    const [resultAPI, setResultAPI] = useState();
 
     useEffect(() => {
         document.title = "Usuarios - ProStockConstructora";
@@ -42,46 +40,119 @@ export const UsersView = () => {
             UsuarioServicio.ObtenerAdministradores().then(datos => { setDatos(datos.data); });
             EmpresaServicio.obtenerEmpresasAAsociar().then(datos => { setDatosEmpresas(datos.data); });
         } else if (rol == "Administrador") {
-            UsuarioServicio.ObtenerUsuariosEmpresa(1).then(datos => { setDatos(datos.data); })
+            RecargarTabla();
             UsuarioServicio.ObtenerRoles().then(datos => { setRolesBBDD(datos.data); })
         }
     }, [rol]);
 
-    const { register, formState: { errors }, handleSubmit, reset, setValue } = useForm({ resolver: yupResolver(CrearUsuarioYUP), mode: "onChange" });
+    useEffect(() => {
+        if (alertWithoutModal) setTimeout(() => setAlertWithoutModal(false), 5000);
+    }, [alertWithoutModal])
 
-    // MODAL
-    const onSubmit = () => {
-        if (idUpdate == 0) CrearUsuario(d);
-        else ActualizaEmpresa(d);
+    useEffect(() => {
+        if (idUpdate != 0) CargarDatos(idUpdate);
+    }, [idUpdate]);
+
+    const { register, formState: { errors }, handleSubmit, reset, setValue } =
+        useForm({ resolver: yupResolver(CrearUsuarioYUP), mode: "onChange" });
+
+    // API BACKEND REQUESTS
+    const RecargarTabla = () => {
+        UsuarioServicio.ObtenerUsuariosEmpresa(1).then(datos => { setDatos(datos.data); })
     }
 
     const CrearUsuario = (datos) => {
-        if (rol == "Superadministrador") {
-            UsuarioServicio.CrearUsuario(datos).then(d => {
-                setAlertMSGAPI(true);
+        if (rol == "Administrador") {
+            const datosCorregidos = {
+                ...datos,
+                EmpresaId: 1,
+                Roles: [datos.Roles]
+            }
+            UsuarioServicio.CrearUsuario(datosCorregidos).then(d => {
+                setAlertWithoutModal(true);
                 setResultAPI(d.data);
+                CerrarModal(d.data);
             }).catch(e => {
-                setAlertMSGAPI(true);
+                setAlertWithoutModal(true);
                 setResultAPI("Error:" + e.response.data);
             });
+
         }
     }
 
-    const CerrarModal = () => {
+    const CargarDatos = (id) => {
+        UsuarioServicio.ObtenerUsuarioPorId(id).then(d => {
+            setValue("Id", d.data.id);
+            setValue("NombreUsuario", d.data.nombreUsuario);
+            setValue("Email", d.data.email);
+            setValue("Celular", d.data.telefono);
+            setValue("Estado", d.data.estado);
+            setValue("Roles", d.data.roles[0].replaceAll(" ", "").toUpperCase().normalize("NFD").replaceAll(/[\u0300-\u036f]/g, ""));
+            setValue("EmpresaId", 1);
+        })
+    }
+
+    const ActualizarUsuario = (datos) => {
+        const datosCorregidos = {
+            ...datos,
+            EmpresaId: 1,
+            Roles: [datos.Roles]
+        }
+        UsuarioServicio.ActualizarUsuario(idUpdate, datosCorregidos).then(d => {
+            setAlertWithoutModal(true);
+            setResultAPI(d.data);
+            CerrarModal(d.data);
+        }).catch(e => {
+            setAlertWithoutModal(true);
+            setResultAPI("Error:" + e.response.data);
+        });
+    }
+
+    const CambiarEstado = async (id) => {
+        await UsuarioServicio.CambiarEstadoUsuario(id).then(d => {
+            setAlertWithoutModal(true);
+            setResultAPI(d.data);
+        }).catch(e => {
+            setAlertWithoutModal(true);
+            setResultAPI("Error:" + e.response.data);
+        });
+        RecargarTabla();
+    }
+
+    // MODAL
+    const onSubmit = (d) => {
+        if (idUpdate == "") CrearUsuario(d);
+        else ActualizarUsuario(d);
+    }
+
+    const onErrors = (e) => {
+        console.log("Errores:", e);
+    }
+
+    const CerrarModal = (res = "") => {
         setModal(false);
-        if (idUpdate != 0 || !resultAPI.includes("Error")) reset();
-        //if (!resultAPI.includes("Error")) RecargarTabla();
+        if (idUpdate != "" || !res.includes("Error")) reset();
+        if (!res.includes("Error")) RecargarTabla();
         setIdUpdate(0);
     }
 
     return (
         <>
             {
+                alertWithoutModal ?
+                    <div className={`alertContainer ${resultAPI.includes("Error") ? "FRerror" : "FRexito"}`}>
+                        <div>
+                            <p>{resultAPI.includes("Error:") ? resultAPI.split(":")[1] : resultAPI}</p>
+                            <span onClick={() => setAlertWithoutModal(false)}>X</span>
+                        </div>
+                    </div>
+                    : <></>
+            }
+            {
                 modal ?
                     <Form title={idUpdate == 0 ? "Registrar usuario" : "Actualizar usuario"}
                         buttonMsg={idUpdate == 0 ? "Añadir usuario" : "Actualizar usuario"}
-                        handleSubmit={handleSubmit(onSubmit)} closeModal={CerrarModal}
-                        // setAlertMSGAPI={setAlertMSGAPI} alertMSGAPI={alertMSGAPI} resultAPI={resultAPI}
+                        handleSubmit={handleSubmit(onSubmit, onErrors)} closeModal={() => CerrarModal()}
                         inputs={[
                             {
                                 "type": "text",
@@ -113,6 +184,9 @@ export const UsersView = () => {
                                 "type": "select",
                                 "select": rolesBBDD,
                                 "required": true,
+                                "register": register,
+                                "registerData": "Roles",
+                                "errors": errors,
                                 "icon": "assignment_ind",
                                 "info": "Asigne a este usuario su rol:"
                             }
@@ -137,6 +211,9 @@ export const UsersView = () => {
                                     opciones={["contacto", "editar", "desactivar"]}
                                     datos={datos}
                                     camposAExcluir={["id", "email", "telefono"]}
+                                    modalHandle={setModal}
+                                    idHandle={setIdUpdate}
+                                    stateHandle={CambiarEstado}
                                 /></> : <Navigate to={"/not-access"} />
                     }
                 </>

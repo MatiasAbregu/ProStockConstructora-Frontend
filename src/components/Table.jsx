@@ -27,6 +27,7 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
 
         if (datos) {
             return datos.map((fila, i) => {
+                const id = fila.id ? fila.id : 0;
                 const estado = Object.entries(fila).find(([key]) => key.toLowerCase().startsWith("estado"))?.[1] ? true : false;
 
                 return (
@@ -63,7 +64,8 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                                 )
                                             } else if (value == "editar") {
                                                 return (
-                                                    <span className="material-symbols-outlined editButton" title="Editar" key={i3} onClick={() => {
+                                                    <span className="material-symbols-outlined editButton" title="Editar" key={i3} 
+                                                    onClick={() => {
                                                         modalHandle(true);
                                                         idHandle(id);
                                                     }}>edit_square</span>
