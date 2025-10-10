@@ -14,6 +14,7 @@ import { UsersView } from "./pages/UsersPages/UsersView";
 import { LogOut } from './pages/LogOut';
 import { MenuUsers } from "./pages/UsersPages/MenuUsers";
 import { MaterialsDetails } from "./pages/MaterialsDetails";
+import { NotaDePedido } from "./pages/NotaDePedidos";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/users" element={<MenuUsers />} />
         <Route path="/users/users-view" element={<UsersView />} />
         <Route path="/log-out" element={<LogOut />} />
+        <Route path="/NotaDePedidos" element={<NotaDePedido />} />
 
       </Routes>
     </BrowserRouter>
