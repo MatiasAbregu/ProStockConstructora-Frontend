@@ -126,6 +126,10 @@
     width: 95%;
 }
 
+.modalBack.visualModal form {
+    height: 62vh;
+}
+
 @keyframes aparecerModal {
     0% {
         transform: translateX(-100vw);

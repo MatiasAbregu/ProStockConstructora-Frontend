@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
 import CrearUsuarioYUP from "../../schemas/CrearUsuarioYUP";
 import InputControl from "../../validation/InputControl";
 import EmpresaServicio from "../../services/EmpresaServicio";
+import { VisualForm } from "../../components/VisualForm";
 
 export const UsersView = () => {
 
@@ -23,6 +24,7 @@ export const UsersView = () => {
     const [rolesBBDD, setRolesBBDD] = useState([]);
 
     const [modal, setModal] = useState(false);
+    const [modalContact, setModalContact] = useState(false);
 
     const [idUpdate, setIdUpdate] = useState("");
     const [alertWithoutModal, setAlertWithoutModal] = useState(false);
@@ -131,6 +133,7 @@ export const UsersView = () => {
 
     const CerrarModal = (res = "") => {
         setModal(false);
+        setModalContact(false);
         if (idUpdate != "" || !res.includes("Error")) reset();
         if (!res.includes("Error")) RecargarTabla();
         setIdUpdate(0);
@@ -195,6 +198,27 @@ export const UsersView = () => {
                     :
                     <></>
             }
+            {
+                modalContact ?
+                    <VisualForm closeModal={() => CerrarModal()} title={"Datos de contacto"}
+                        inputs={[{
+                            "type": "input",
+                            "info": "Email",
+                            "icon": "mail",
+                            "register": register,
+                            "registerData": "Email"
+                        },
+                        {
+                            "type": "input",
+                            "info": "Teléfeno",
+                            "icon": "call",
+                            "register": register,
+                            "registerData": "Celular"
+                        }
+                        ]} />
+                    :
+                    <></>
+            }
             <Sidebar />
             <section className="Users">
                 <>
@@ -208,7 +232,7 @@ export const UsersView = () => {
                                 </div>
                                 <Table
                                     columnas={["Nombre de usuario", "Estado", "Rol"]}
-                                    opciones={["contacto", "editar", "desactivar"]}
+                                    opciones={[{ contacto: setModalContact }, "editar", "desactivar"]}
                                     datos={datos}
                                     camposAExcluir={["id", "email", "telefono"]}
                                     modalHandle={setModal}

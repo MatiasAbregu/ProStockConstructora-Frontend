@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import '../styles/Table.css';
 import { NavLink } from "react-router-dom";
+import '../styles/Table.css';
 
 export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, idHandle, stateHandle }) => {
 
@@ -28,7 +28,8 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
         if (datos) {
             return datos.map((fila, i) => {
                 const id = fila.id ? fila.id : 0;
-                const estado = Object.entries(fila).find(([key]) => key.toLowerCase().startsWith("estado"))?.[1] ? true : false;
+                const estado = Object.entries(fila).find(([key]) => key.toLowerCase().startsWith("estado"))?.[1]
+                    == "Activo" ? true : false;
 
                 return (
                     <Contenedor key={i}>
@@ -41,7 +42,7 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                     else return (<td key={i2}>---</td>)
                                 }
 
-                                if(Array.isArray(dato)) dato = dato.join(" - ")
+                                if (Array.isArray(dato)) dato = dato.join(" - ")
                                 if (enableTABLARESPONSIVA) {
                                     if (i == longitudArray.length - 1) return (<p key={i2}>{dato}</p>)
                                     return (<><p key={i2}>{dato}</p> -</>);
@@ -64,15 +65,16 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                                 )
                                             } else if (value == "editar") {
                                                 return (
-                                                    <span className="material-symbols-outlined editButton" title="Editar" key={i3} 
-                                                    onClick={() => {
-                                                        modalHandle(true);
-                                                        idHandle(id);
-                                                    }}>edit_square</span>
+                                                    <span className="material-symbols-outlined editButton" title="Editar" key={i3}
+                                                        onClick={() => {
+                                                            modalHandle(true);
+                                                            idHandle(id);
+                                                        }}>edit_square</span>
                                                 )
                                             } else if (value == "desactivar") {
                                                 return (
-                                                    <span className="material-symbols-outlined disableButton"
+                                                    <span className={`material-symbols-outlined 
+                                                        ${estado ? "disableButton" : "enableButton"}`}
                                                         key={i3} onClick={() => {
                                                             stateHandle(id);
                                                         }}>{estado ? "do_not_disturb_on" : "add_circle"}</span>
@@ -84,9 +86,13 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                                         delete
                                                     </span>
                                                 )
-                                            } else if (value == "contacto") {
+                                            } else if (value.contacto) {
                                                 return (
-                                                    <span className="material-symbols-outlined contactButton" key={i3}>
+                                                    <span className="material-symbols-outlined contactButton" key={i3}
+                                                        onClick={() => {
+                                                            idHandle(id);
+                                                            value.contacto(true)
+                                                        }}>
                                                         contact_phone
                                                     </span>
                                                 )
