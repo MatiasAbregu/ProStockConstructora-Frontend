@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/InputForm.css';
 
-export const InputForm = ({ children, typeInput, required, placeholder, icon, select, register, registerData, errorsHandle, keyHandle }) => {
+export const InputForm = ({ children, typeInput, required, placeholder, icon, select, register, registerData, errorsHandle, keyHandle, visual }) => {
+
+    const [visualValue, setVisualValue] = useState("");
+
+    useEffect(() => { setVisualValue(visual) }, [visual]);
+
     if (!select) {
         return (
             <div className="inputFormContainer">
                 <label>{children}</label>
-                <div>
-                    {icon ? <span className="material-symbols-outlined">{icon}</span> : <></>}
-                    <input type={typeInput} {...(typeof register == "function" ? register(registerData) : {})}
-                        placeholder={placeholder} required={required} className={`${icon ? "withIcon" : ""} 
-                    ${errorsHandle && errorsHandle[registerData]?.message ? "ierror" : ""}`} onKeyDown={keyHandle} />
-                </div>
-                {errorsHandle && errorsHandle[registerData]?.message ? <p className="error">{errorsHandle[registerData].message}</p> : <></>}
+                {
+                    !visual ?
+                        <>
+                            <div>
+                                {icon ? <span className="material-symbols-outlined">{icon}</span> : <></>}
+                                <input type={typeInput} {...(typeof register == "function" ? register(registerData) : {})}
+                                    placeholder={placeholder} required={required} className={`${icon ? "withIcon" : ""}${errorsHandle && errorsHandle[registerData]?.message ? "ierror" : ""}`} onKeyDown={keyHandle} />
+                            </div>
+                            {errorsHandle && errorsHandle[registerData]?.message ? <p className="error">{errorsHandle[registerData].message}</p> : <></>}
+                        </>
+                        :
+                        <>
+                            <div>
+                                {icon ? <span className="material-symbols-outlined">{icon}</span> : <></>}
+                                <input type={typeInput} required={required} {...(typeof register == "function" ? register(registerData) : {})} className={`${icon ? "withIcon" : ""}`} onKeyDown={keyHandle} readOnly />
+                            </div>
+                        </>
+                }
             </div>
         );
     } else {
