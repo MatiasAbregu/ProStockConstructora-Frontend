@@ -71,3 +71,8 @@
 .inputFormContainer input.ierror {
     box-shadow: 0 0 12px 2px #ff0000;
 }
+
+[class*=input]:disabled, select:disabled{
+    background-color: #7f7f7f;
+    color: lightgray;
+}
