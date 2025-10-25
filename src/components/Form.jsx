@@ -3,7 +3,7 @@ import { InputForm } from "./InputForm";
 import '../styles/Form.css';
 
 // alertMSGAPI -> Decide si se muestra o no || setAlertMSGAPI se activa en el formulario principal y se desactiva desde acá
-export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal }) => {
+export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal, onChange }) => {
 
     const [modalForm, setModalForm] = useState(false);
 
@@ -24,7 +24,7 @@ export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal }) => 
                                     inputs.map((input, i) => {
                                         if (input.type != "select") {
                                             return (
-                                                <InputForm typeInput={input.type} required={input.required} icon={input.icon}
+                                                <InputForm typeInput={input.type} required={input.required} disabled={input.disabled} icon={input.icon}
                                                     register={input.register} registerData={input.registerData} errorsHandle={input.errors}
                                                     keyHandle={input.keyHandle} key={i}>
                                                     {input.info}
@@ -33,7 +33,7 @@ export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal }) => 
                                         } else {
                                             return (
                                                 <InputForm select={input.select} icon={input.icon} register={input.register} registerData={input.registerData}
-                                                    errorsHandle={input.errorsHandle} key={i}>
+                                                    errorsHandle={input.errorsHandle} key={i} required={input.required} disabled={input.disabled} onChange={(e) => onChange?.(input.info, e.target.value)}>
                                                     {input.info}
                                                 </InputForm>
                                             );

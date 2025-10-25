@@ -1,8 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { Table } from "../components/Table";
 import { BotonAnadir } from "../components/BotonAnadir";
-import { useState } from "react";
 import { Form } from "../components/Form";
 import { LogOut } from "../components/LogOut";
 import React from "react";
@@ -10,14 +9,20 @@ import "../styles/Materials.css";
 import "../styles/Table.css";
 
 export const Materials = () => {
+  const [modal, setModal] = useState(false);
+  const [tipoDeRecurso, setTipoDeRecurso] = useState("");
+
   useEffect(() => {
     document.title = "Materiales - ProStockConstructora";
-
     const rootDiv = document.getElementById("root");
     rootDiv.className = "pagedivided";
   }, []);
 
-  const [modal, setModal] = useState(false);
+  const handleInputChange = (field, value) => {
+    if (field === "Tipo de recurso") {
+      setTipoDeRecurso(value);
+    }
+  };
 
   return (
     <>
@@ -25,18 +30,24 @@ export const Materials = () => {
         modal ?
           <Form title={"Añadir recurso:"} 
           buttonMsg={"Añadir"} closeModal={function () { setModal(false) }} 
+          onChange={handleInputChange}
           inputs={[
             {
-              "type": "select",
-              "info": "Código de recurso",
+              "type": "text",
+              "info": "Código ISO",
               "required": true,
-              "select": ["ce_P", "ce_B", "ac_A"],
             },
             {
               "type": "select",
               "info": "Tipo de recurso" ,
               "required": true,
               "select": ["Material", "Maquina"]
+            },
+            {
+              "type": "select",
+              "info": "Tipo de material",
+              "required": false,
+              "select": ["Vacío","Cemento", "Acero", "Arena", "Grava", "Ladrillo", "Madera", "Bloque", "Yeso", "Pintura", "Maquinaria pesada", "Herramientas manuales"]
             },
             {
               "type": "text",
@@ -56,7 +67,8 @@ export const Materials = () => {
             {
               "type": "text",
               "info": "Unidad de medida",
-              "required": true
+              "required": tipoDeRecurso === "Material",
+              "disabled": tipoDeRecurso === "Maquina",
             }
           ]}></Form> : <></>
       }
@@ -69,7 +81,7 @@ export const Materials = () => {
         </div>
         <Table
           eyeurl={"/materials/eye"}
-          columnas={["Código ISO", "Nombre", "Tipo de recurso", "Tipo", "Unidad"]}
+          columnas={["Código ISO", "Nombre", "Tipo de recurso - Tipo Material", "Unidad", "Descripción"]}
           opciones={[{ eye: "/materials/eye" }, "editar", "eliminar"]}
           datos={
             [

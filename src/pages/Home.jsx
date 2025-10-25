@@ -48,13 +48,14 @@ export const Home = () => {
               ]}
             /> : opciones == 1 ?
               <Table datos={[{
-                "codigo": "01-Cemento-Loma Negra",
+                "codigo": "01 - Cemento",
                 "Unidad": "Kg",
-              }, {
-                "codigo": "02-Arena-Holmic",
+              }, 
+              {
+                "codigo": "02 - Arena",
                 "unidad": "Kg",
               }
-              ]} columnas={["Codigo - Nombre - Marca", "Unidad"]} /> :
+              ]} columnas={["Codigo - Nombre", "Unidad"]} /> :
               undefined
         }
       </section>
