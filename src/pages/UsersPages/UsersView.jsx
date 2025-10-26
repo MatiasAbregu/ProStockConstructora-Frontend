@@ -16,6 +16,7 @@ import CrearUsuarioYUP from "../../schemas/CrearUsuarioYUP";
 import InputControl from "../../validation/InputControl";
 import EmpresaServicio from "../../services/EmpresaServicio";
 import { VisualForm } from "../../components/VisualForm";
+import { Alert } from "../../components/Alert";
 
 export const UsersView = () => {
 
@@ -78,7 +79,6 @@ export const UsersView = () => {
                 setAlertWithoutModal(true);
                 setResultAPI("Error:" + e.response.data);
             });
-
         }
     }
 
@@ -143,12 +143,7 @@ export const UsersView = () => {
         <>
             {
                 alertWithoutModal ?
-                    <div className={`alertContainer ${resultAPI.includes("Error") ? "FRerror" : "FRexito"}`}>
-                        <div>
-                            <p>{resultAPI.includes("Error:") ? resultAPI.split(":")[1] : resultAPI}</p>
-                            <span onClick={() => setAlertWithoutModal(false)}>X</span>
-                        </div>
-                    </div>
+                    <Alert resultAPI={resultAPI} setAlertWithoutModal={setAlertWithoutModal} />
                     : <></>
             }
             {
