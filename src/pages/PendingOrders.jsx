@@ -19,6 +19,7 @@ export const PendingOrders = () => {
       <section className="PendingOrders">
         <Table
           columnas={["Código - Nombre - Empresa", "Estado"]} 
+
           datos={[
             {
               codigo: "1 - Parque Industrial Norte / G.C.Construcciones",

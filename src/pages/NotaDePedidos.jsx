@@ -21,18 +21,18 @@ export const NotaDePedido = () => {
         <LogOut />
         <h1>Nota de Pedido</h1>
         <Table
-          columnas={["Código", "Material", "Cantidad", "Unidad de medida", "Estado"]}
+          columnas={["Código-Material", "Cantidad", "Deposito","Fecha Emision", "Estado"]}
           opciones={["editar", "eliminar"]}
             datos={[
-                { "Código": "NP001", 
-                    "Material": "Cemento", 
+                { "Código-Material": "NP001- Cemento", 
                     "Cantidad": 100, 
-                    "Unidad de medida": "sacos", 
+                    "Deposito": "Parque Industrial Norte",
+                    "Fecha Emision": "20/06/2024", 
                     "Estado": "Pendiente" },
-                { "Código": "NP002", 
-                    "Material": "Ladrillos", 
-                    "Cantidad": 500,
-                    "Unidad de medida": "cajas", 
+                { "Código-Material": "NP002- Ladrillos", 
+                    "Cantidad": 500, 
+                    "Deposito": "Parque Industrial Norte", 
+                    "Fecha Emision": "21/06/2024", 
                     "Estado": "Pendiente" }
             ]}
         />
