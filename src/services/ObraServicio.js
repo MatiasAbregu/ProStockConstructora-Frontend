@@ -8,8 +8,16 @@ class ObraServicio {
         return axios.get(`${url}/empresa/${empresaId}`);
     }
 
+    obtenerObraPorId(id) {
+        return axios.get(`${url}/${id}`)
+    }
+
     crearObra(obra) {
         return axios.post(`${url}`, obra);
+    }
+
+    actualizarObra(id, obra) {
+        return axios.put(`${url}/${{id}}`, obra);
     }
 }
 
