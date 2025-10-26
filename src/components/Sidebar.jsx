@@ -62,12 +62,12 @@ export const Sidebar = () => {
               <span className="material-symbols-outlined">home</span>
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/materials" className={navLinkClass} onClick={closeSidebar}>
               Recursos &nbsp;
               <span className="material-symbols-outlined">construction</span>
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink to="/tracking" className={navLinkClass} onClick={closeSidebar}>
               Pedidos &nbsp;

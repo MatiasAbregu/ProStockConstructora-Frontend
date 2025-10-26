@@ -24,18 +24,18 @@ export const Deposits = () => {
         <Table
           columnas={["Codigo - tipo Deposito"]}
           opciones={[{eye: "/materials"}, "editar", "eliminar"]}
+          camposAExcluir={["id"]}
           datos={[
             {
-              "Codigo": "DEP001- Buen estado",
-              
+              "id": 1,
+              "Codigo": "DEP001- Buen estado",           
             },
             {
-              "Codigo": "DEP002- En Uso",
-              
+              "id": 2,
+              "Codigo": "DEP002- En Uso",       
             },
             {
-              "Codigo": "DEP003- Desechos",
-              
+              "Codigo": "DEP003- Desechos",             
             }
 
         ]}

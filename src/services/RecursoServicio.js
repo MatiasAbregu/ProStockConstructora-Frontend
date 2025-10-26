@@ -12,13 +12,10 @@ class RecursoServicio {
     }
 
     // POST
-    crearRecurso(recurso) {
-
+    crearRecurso(recurso, depositoId) {
+        return axios.post(`${url}/${depositoId}`, recurso);
     }
 
-    cargarRecursoADeposito(recurso, cant, depositoId){
-
-    }
 
 }
 

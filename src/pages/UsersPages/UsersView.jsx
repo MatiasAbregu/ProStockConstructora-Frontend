@@ -78,7 +78,6 @@ export const UsersView = () => {
                 setAlertWithoutModal(true);
                 setResultAPI("Error:" + e.response.data);
             });
-
         }
     }
 

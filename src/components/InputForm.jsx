@@ -17,7 +17,7 @@ export const InputForm = ({ children, typeInput, required, placeholder, icon, se
                             <div>
                                 {icon ? <span className="material-symbols-outlined">{icon}</span> : <></>}
                                 <input type={typeInput} {...(typeof register == "function" ? register(registerData) : {})}
-                                    placeholder={placeholder} required={required} disabled={disabled} onChange={onChange} className={`${icon ? "withIcon" : ""}${errorsHandle && errorsHandle[registerData]?.message ? "ierror" : ""}`} onKeyDown={keyHandle} />
+                                    placeholder={placeholder} required={required} disabled={disabled} className={`${icon ? "withIcon" : ""}${errorsHandle && errorsHandle[registerData]?.message ? "ierror" : ""}`} onKeyDown={keyHandle} />
                             </div>
                             {errorsHandle && errorsHandle[registerData]?.message ? <p className="error">{errorsHandle[registerData].message}</p> : <></>}
                         </>
@@ -38,8 +38,10 @@ export const InputForm = ({ children, typeInput, required, placeholder, icon, se
                 <div>
                     {icon ? <span className="material-symbols-outlined">{icon}</span> : <></>}
                     <select className={`${icon ? "withIcon" : ""} ${errorsHandle && errorsHandle[registerData]?.message ? "ierror" : ""}`}
-                            required={required} disabled={disabled} onChange={onChange}
-                        {...(typeof register == "function" ? register(registerData) : {})}>
+                        required={required} disabled={disabled}
+                        {...(typeof register == "function" ? register(registerData, {
+                            onChange: (e) => onChange?.(children, e.target.value)
+                        }) : {})}>
                         {
                             typeof select[0] == "object" && select[0] != null ?
                                 select.map((d, i) => (

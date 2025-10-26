@@ -6,16 +6,28 @@ import { Form } from "../components/Form";
 import { LogOut } from '../components/LogOut';
 import "../styles/ConstructionWork.css";
 import "../styles/Table.css";
+import ObraServicio from "../services/ObraServicio";
 
 export const ConstructionWork = () => {
+
+  const [modal, setModal] = useState(false);
+  const [datos, setDatos] = useState();
+  const [empresaId, setEmpresaId] = useState(1);
+
   useEffect(() => {
     document.title = "Obras - ProStockConstructora";
 
     const rootDiv = document.getElementById("root");
     rootDiv.className = "pagedivided";
+
+    RecargarTabla();
   }, []);
 
-  const [modal, setModal] = useState(false);
+  const RecargarTabla = () => {
+    ObraServicio.obtenerObras(empresaId)
+      .then(d => setDatos(d.data))
+      .catch(e => console.log(e));
+  }
 
   return (
     <>
@@ -52,21 +64,9 @@ export const ConstructionWork = () => {
         <BotonAnadir setOnClick={() => setModal(true)}>Añadir obra</BotonAnadir>
         <Table
           columnas={["Código - Nombre - Empresa", "Estado"]}
-          opciones={[{eye: "/deposits"}, "editar", "eliminar"]}
-          datos={[
-            {
-              codigo: "1 - Parque Industrial Norte / G.C.Construcciones",
-              estado: "En curso",
-            },
-            {
-              codigo: "2 - Proyecto Oasis XXI / MURO Arquitectos",
-              estado: "Finalizada",
-            },
-            {
-              codigo: "3 - Edificio Central / Constructora ABC",
-              estado: "En pausa",
-            },
-          ]}
+          opciones={[{ eye: "/deposits" }, "editar", "eliminar"]}
+          camposAExcluir={["empresaId"]}
+          datos={datos}
         />
       </section>
     </>
