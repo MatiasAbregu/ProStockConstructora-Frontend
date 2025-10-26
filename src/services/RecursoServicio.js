@@ -16,7 +16,6 @@ class RecursoServicio {
         return axios.post(`${url}/${depositoId}`, recurso);
     }
 
-
 }
 
 // Por último, exportamos el servicio a todo nuestro programa (seria como hacer referencia)
