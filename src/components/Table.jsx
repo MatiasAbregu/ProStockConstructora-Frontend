@@ -57,7 +57,9 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                         opciones.map((value, i3) => {
                                             if (value.eye) {
                                                 return (
-                                                    <NavLink to={id ? `${value.eye}/${id}` : value.eye} title="Ver detalles" key={i3}>
+                                                    <NavLink to={id && value.eye.includes(":id") ?
+                                                        `${value.eye.replace(":id", id)}` : value.eye}
+                                                        title="Ver detalles" key={i3}>
                                                         <span className="material-symbols-outlined seeButton">
                                                             visibility
                                                         </span>

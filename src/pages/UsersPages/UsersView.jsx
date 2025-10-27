@@ -27,7 +27,7 @@ export const UsersView = () => {
     const [modal, setModal] = useState(false);
     const [modalContact, setModalContact] = useState(false);
 
-    const [idUpdate, setIdUpdate] = useState("");
+    const [idUpdate, setIdUpdate] = useState(0);
     const [alertWithoutModal, setAlertWithoutModal] = useState(false);
     const [resultAPI, setResultAPI] = useState();
 
@@ -123,7 +123,7 @@ export const UsersView = () => {
 
     // MODAL
     const onSubmit = (d) => {
-        if (idUpdate == "") CrearUsuario(d);
+        if (idUpdate == 0) CrearUsuario(d);
         else ActualizarUsuario(d);
     }
 
@@ -134,7 +134,7 @@ export const UsersView = () => {
     const CerrarModal = (res = "") => {
         setModal(false);
         setModalContact(false);
-        if (idUpdate != "" || !res.includes("Error")) reset();
+        if (idUpdate != 0 || !res.includes("Error")) reset();
         if (!res.includes("Error")) RecargarTabla();
         setIdUpdate(0);
     }
@@ -150,7 +150,10 @@ export const UsersView = () => {
                 modal ?
                     <Form title={idUpdate == 0 ? "Registrar usuario" : "Actualizar usuario"}
                         buttonMsg={idUpdate == 0 ? "Añadir usuario" : "Actualizar usuario"}
-                        handleSubmit={handleSubmit(onSubmit, onErrors)} closeModal={() => CerrarModal()}
+                        handleSubmit={handleSubmit(onSubmit, onErrors)} closeModal={() => {
+                            setIdUpdate(0);
+                            CerrarModal();
+                        }}
                         inputs={[
                             {
                                 "type": "text",

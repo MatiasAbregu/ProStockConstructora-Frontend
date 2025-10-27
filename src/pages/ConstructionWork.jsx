@@ -75,7 +75,7 @@ export const ConstructionWork = () => {
   const CargarDatos = (id) => {
     ObraServicio.obtenerObraPorId(id).then(d => {
       // d.data.id
-      setValue("Id", empresaId);
+      setValue("empresaId", empresaId);
       setValue("nombreObra", d.data.nombre);
 
       const estado = d.data.estado == "EnProceso" ? 0 : d.data.estado == "Pausada" ? 1 : 2;
@@ -84,19 +84,36 @@ export const ConstructionWork = () => {
   }
 
   const ActualizarObra = (datos) => {
-    ObraServicio.ActualizarObra(idUpdate, datos)
+    const datosLimpios = {
+      id: idUpdate,
+      ...datos
+    };
+
+    delete datosLimpios.empresaId;
+
+    ObraServicio.actualizarObra(idUpdate, datosLimpios)
+      .then(d => {
+        setAlertWithoutModal(true);
+        setResultAPI(d.data);
+        CerrarModal(d.data);
+      }).catch(e => {
+        setAlertWithoutModal(true);
+        console.log(e);
+        setResultAPI("Error:" + e.response.data);
+      });
   }
 
   //
   // FORM
   //
   const onSubmit = (datos) => {
-    CrearObra(datos);
+    if (idUpdate == 0) CrearObra(datos);
+    else ActualizarObra(datos);
   }
 
   const CerrarModal = (res = "") => {
     setModal(false);
-    if (idUpdate != "" || !res.includes("Error")) reset();
+    if (idUpdate != 0 || !res.includes("Error")) reset();
     if (!res.includes("Error")) RecargarTabla();
     setIdUpdate(0);
   }
@@ -111,7 +128,10 @@ export const ConstructionWork = () => {
       {
         modal ?
           <Form title={idUpdate == 0 ? "Añadir obra" : "Actualizar obra"} buttonMsg={idUpdate == 0 ? "Añadir" : "Actualizar"}
-            closeModal={() => setModal(false)} handleSubmit={handleSubmit(onSubmit)}
+            closeModal={() => {
+              setIdUpdate(0);
+              CerrarModal();
+            }} handleSubmit={handleSubmit(onSubmit)}
             inputs={[
               {
                 "type": "text",
@@ -140,7 +160,7 @@ export const ConstructionWork = () => {
         <BotonAnadir setOnClick={() => setModal(true)}>Añadir obra</BotonAnadir>
         <Table
           columnas={["Nombre", "Estado"]}
-          opciones={[{ eye: "/deposits" }, "editar", "eliminar"]}
+          opciones={[{ eye: "/deposits" }, "editar"]}
           camposAExcluir={["id"]}
           datos={datos}
           modalHandle={setModal}

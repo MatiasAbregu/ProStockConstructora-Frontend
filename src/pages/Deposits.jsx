@@ -52,7 +52,7 @@ export const Deposits = () => {
         </div>
         <Table
           columnas={["Codigo - tipo Deposito"]}
-          opciones={[{eye: "/materials"}, "editar", "eliminar"]}
+          opciones={[{eye: "/materials/:id"}, "editar", "eliminar"]}
           camposAExcluir={["id"]}
           datos={[
             {

@@ -17,7 +17,7 @@ class ObraServicio {
     }
 
     actualizarObra(id, obra) {
-        return axios.put(`${url}/${{id}}`, obra);
+        return axios.put(`${url}/${id}`, obra);
     }
 }
 
