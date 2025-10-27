@@ -131,8 +131,7 @@ export const ConstructionWork = () => {
             closeModal={() => {
               setIdUpdate(0);
               CerrarModal();
-            }} handleSubmit={handleSubmit(onSubmit)}
-            inputs={[
+            }} handleSubmit={handleSubmit(onSubmit)} inputs={[
               {
                 "type": "text",
                 "info": "Nombre de la obra",

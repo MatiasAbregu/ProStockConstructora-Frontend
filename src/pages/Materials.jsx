@@ -20,6 +20,10 @@ export const Materials = () => {
   const [msjBBDD, setMsjBBDD] = useState("");
   const { depositoId } = useParams();
 
+  const [idUpdate, setIdUpdate] = useState(0);
+  const [alertWithoutModal, setAlertWithoutModal] = useState(false);
+  const [resultAPI, setResultAPI] = useState();
+
   useEffect(() => {
     document.title = "Materiales - ProStockConstructora";
     const rootDiv = document.getElementById("root");
@@ -30,6 +34,10 @@ export const Materials = () => {
   useEffect(() => {
     RecargarTabla();
   }, [depositoId])
+
+  useEffect(() => {
+    if (idUpdate != 0) CargarDatos(idUpdate);
+  }, [idUpdate]);
 
   // useForm --> EditForm
   // Model="pais" -> resolver: yupResolver(modelo(SCHEMA QUE CREAMOS CON YUP))
@@ -48,7 +56,7 @@ export const Materials = () => {
 
   // MÉTODOS PARA CONECTAR AL BACKEND
   const RecargarTabla = () => {
-    RecursoServicio.traerRecursorDeposito(depositoId)
+    RecursoServicio.traerRecursosDeDeposito(depositoId)
       .then(r => {
         if (typeof r.data == "string") setMsjBBDD(r.data);
         else setDatos(r.data)
@@ -73,17 +81,38 @@ export const Materials = () => {
       .catch(e => console.log(e));
   }
 
-  // METODOS PARA FORM
+  const CargarDatos = (id) => {
+    RecursoServicio.traerRecursoDepositoPorStockId(id)
+      .then(d => {
+        setValue("codigoISO", d.data.codigoISO);
+        setValue("tipo", d.data.tipoRecurso);
+        setValue("nombre", d.data.nombre);
+        setValue("tipoMaterial.nombre", d.data.tipoMaterial);
+        setValue("unidadDeMedida.nombre", d.data.unidadDeMedida);
+        setValue("descripcion", d.data.descripcion);
+        setValue("cantidad", d.data.cantidad);
+
+        handleInputChange("Tipo de recurso", d.data.tipoRecurso);
+      })
+      .catch(e => console.log(e));
+  }
+
+  // MÉTODOS PARA FORM
   const onSubmit = (d) => {
     CrearRecurso(d);
+    reset();
+    setModal(false);
   }
 
   return (
     <>
       {
         modal ? // OnValidSubmit == handleSubmit
-          <Form title={"Añadir recurso:"}
-            buttonMsg={"Añadir"} closeModal={() => setModal(false)}
+          <Form title={idUpdate == 0 ? "Añadir recurso" : "Actualizar recurso"}
+            buttonMsg={idUpdate == 0 ? "Añadir" : "Actualizar"} closeModal={() => {
+              setModal(false);
+              setIdUpdate(0);
+            }}
             handleSubmit={handleSubmit(onSubmit)} onChange={handleInputChange}
             inputs={[
               {
@@ -163,6 +192,8 @@ export const Materials = () => {
           camposAExcluir={["id"]}
           opciones={["editar", "eliminar"]}
           datos={datos}
+          modalHandle={setModal}
+          idHandle={setIdUpdate}
         />
       </section>
     </>

@@ -7,8 +7,12 @@ const url = "https://localhost:7105/api/recursos"
 class RecursoServicio {
 
     // GET
-    traerRecursorDeposito(depositoId) {
+    traerRecursosDeDeposito(depositoId) {
         return axios.get(`${url}/deposito/${depositoId}`);
+    }
+
+    traerRecursoDepositoPorStockId(stockId) {
+        return axios.get(`${url}/${stockId}`);
     }
 
     // POST
@@ -16,6 +20,10 @@ class RecursoServicio {
         return axios.post(`${url}/${depositoId}`, recurso);
     }
 
+    // PUT
+    actualizarRecurso(recursoId) {
+        return axios.put(`${url}/${recursoId}`, recursoId);
+    }
 }
 
 // Por último, exportamos el servicio a todo nuestro programa (seria como hacer referencia)
