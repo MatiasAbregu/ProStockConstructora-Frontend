@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import "../styles/Home.css";
 import { Sidebar } from "../components/Sidebar";
-// import { ButtonMenu } from "../components/ButtonMenu";
-import { Table } from "../components/Table";
+import { ButtonMenu } from "../components/ButtonMenu";
+import { PendingOrders } from "./PendingOrders";
+import { Table } from "../components/Table"; 
 
 
 import ButtonMany from "./ButtonMany";
-import { LogOut } from "../components/LogOut";
 
 export const Home = () => {
 
-  const [opciones, setOpciones] = useState(0)
+    const [opciones, setOpciones]= useState(0)
+
+
 
   useEffect(() => {
     document.title = "Inicio - ProStockConstructora";
@@ -23,12 +25,10 @@ export const Home = () => {
     <>
       <Sidebar />
       <section className="Home">
-        <LogOut />
-        <div className="upPart">
-          <h1>Pedidos pendientes:</h1>
+        <h1>Pedidos pendientes:</h1>
+        <div className="button-container">
           <ButtonMany setOpciones={setOpciones}></ButtonMany>
         </div>
-<<<<<<< HEAD
           {  
           opciones==0?
           <Table
@@ -54,37 +54,17 @@ export const Home = () => {
         },{ "codigo":"02-Arena-Holcim",
           "unidad":"Kg",
 
-=======
-        {
-          opciones == 0 ?
-            <Table
-              columnas={["Código - Nombre - Empresa", "Estado"]}
-              datos={[
-                {
-                  codigo: "1 - Parque Industrial Norte / G.C.Construcciones",
-                  estado: "En curso",
-                },
-                {
-                  codigo: "2 - Proyecto Oasis XXI / MURO Arquitectos",
-                  estado: "Finalizada",
-                },
-                {
-                  codigo: "3 - Edificio Central / Constructora ABC",
-                  estado: "En pausa",
-                },
-              ]}
-            /> : opciones == 1 ?
-              <Table datos={[{
-                "codigo": "01-Cemento-Loma Negra",
-                "Unidad": "Kg",
-              }, {
-                "codigo": "02-Arena-Holmic",
-                "unidad": "Kg",
-              }
-              ]} columnas={["Codigo - Nombre - Marca", "Unidad"]} /> :
-              undefined
->>>>>>> 0f458e18ce2174eda62866e05b1f014e91d49571
         }
+      
+      
+      ]} columnaEditar={true} columnas={["Codigo - Nombre - Marca","Unidad"]}/>:
+    undefined
+
+         
+          
+          
+          
+         }
       </section>
     </>
   );
