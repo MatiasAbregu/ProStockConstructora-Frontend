@@ -21,8 +21,13 @@ class RecursoServicio {
     }
 
     // PUT
-    actualizarRecurso(recursoId) {
-        return axios.put(`${url}/${recursoId}`, recursoId);
+    actualizarRecurso(recurso, depositoId) {
+        return axios.put(`${url}/deposito/actualizarstock/${depositoId}`, recurso);
+    }
+
+    // Eliminar
+    eliminarRecurso(stockId) {
+        return axios.delete(`${url}/deposito/eliminartock/${stockId}`);
     }
 }
 

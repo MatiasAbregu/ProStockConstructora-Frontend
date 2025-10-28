@@ -25,7 +25,7 @@ function App() {
         <Route path="/materials/:depositoId" element={<Materials />} />
         <Route path="/machines" element={<Machines />} />
         <Route path="/tracking" element={<Tracking />} />
-        <Route path="/deposits" element={<Deposits />} />
+        <Route path="/deposits/:obraId" element={<Deposits />} />
         <Route path="/construction-work" element={<ConstructionWork />} />
         {/* <Route path="/enterprises" element={<Enterprises />} /> */}
         <Route path="/stadistics" element={<Stadistics />} />

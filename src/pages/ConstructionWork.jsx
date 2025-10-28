@@ -22,6 +22,8 @@ export const ConstructionWork = () => {
   const [alertWithoutModal, setAlertWithoutModal] = useState(false);
   const [resultAPI, setResultAPI] = useState();
 
+  const [msjBBDD, setMsjBBDD] = useState("");
+
   const { register, formState: { errors }, handleSubmit, reset, setValue }
     = useForm({ resolver: yupResolver(CrearObraYUP), mode: "onChange" })
 
@@ -50,7 +52,13 @@ export const ConstructionWork = () => {
   //
   const RecargarTabla = () => {
     ObraServicio.obtenerObras(empresaId)
-      .then(d => setDatos(d.data))
+      .then(d => {
+        if (typeof d.data == "string") setMsjBBDD(d.data);
+        else {
+          setDatos(d.data)
+          setMsjBBDD("");
+        }
+      })
       .catch(e => console.log(e));
   }
 
@@ -76,9 +84,10 @@ export const ConstructionWork = () => {
     ObraServicio.obtenerObraPorId(id).then(d => {
       // d.data.id
       setValue("empresaId", empresaId);
-      setValue("nombreObra", d.data.nombre);
+      setValue("codigoObra", d.data.codigoObra);
+      setValue("nombreObra", d.data.nombreObra);
 
-      const estado = d.data.estado == "EnProceso" ? 0 : d.data.estado == "Pausada" ? 1 : 2;
+      const estado = d.data.estado == "En proceso" ? 0 : d.data.estado == "Pausada" ? 1 : 2;
       setValue("estado", estado);
     })
   }
@@ -90,7 +99,6 @@ export const ConstructionWork = () => {
     };
 
     delete datosLimpios.empresaId;
-
     ObraServicio.actualizarObra(idUpdate, datosLimpios)
       .then(d => {
         setAlertWithoutModal(true);
@@ -134,6 +142,16 @@ export const ConstructionWork = () => {
             }} handleSubmit={handleSubmit(onSubmit)} inputs={[
               {
                 "type": "text",
+                "icon": "qr_code",
+                "info": "Código de la obra",
+                "required": true,
+                "register": register,
+                "registerData": "codigoObra",
+                "errors": errors
+              },
+              {
+                "type": "text",
+                "icon": "front_loader",
                 "info": "Nombre de la obra",
                 "required": true,
                 "register": register,
@@ -142,6 +160,7 @@ export const ConstructionWork = () => {
               },
               {
                 "type": "select",
+                "icon": "overview",
                 "info": "Estado de la obra",
                 "select": [{ v: 0, estado: "En proceso" }, { v: 1, estado: "Pausada" }, { v: 2, estado: "Finalizada" }],
                 "required": true,
@@ -157,9 +176,15 @@ export const ConstructionWork = () => {
         <LogOut />
         <h1>&nbsp;Gestionar obras</h1>
         <BotonAnadir setOnClick={() => setModal(true)}>Añadir obra</BotonAnadir>
+        {
+          msjBBDD ? <p className="msgBBDD">({msjBBDD})</p> : undefined
+        }
         <Table
-          columnas={["Nombre", "Estado"]}
-          opciones={[{ eye: "/deposits" }, "editar"]}
+          columnas={["Código", "Nombre", "Estado"]}
+          opciones={[{ to: {
+            url: "/deposits/:id",
+            icon: "garage_home"
+          } }, "editar"]}
           camposAExcluir={["id"]}
           datos={datos}
           modalHandle={setModal}

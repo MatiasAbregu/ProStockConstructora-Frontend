@@ -12,6 +12,8 @@ import RecursoServicio from "../services/RecursoServicio";
 import CrearRecursoYUP from "../schemas/CrearRecursoYUP";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams } from "react-router-dom";
+import { Alert } from "../components/Alert";
+import { ModalVerification } from "../components/ModalVerification";
 
 export const Materials = () => {
   const [modal, setModal] = useState(false);
@@ -23,6 +25,7 @@ export const Materials = () => {
   const [idUpdate, setIdUpdate] = useState(0);
   const [alertWithoutModal, setAlertWithoutModal] = useState(false);
   const [resultAPI, setResultAPI] = useState();
+  const [deleteModal, setDeleteModal] = useState(0);
 
   useEffect(() => {
     document.title = "Materiales - ProStockConstructora";
@@ -34,6 +37,10 @@ export const Materials = () => {
   useEffect(() => {
     RecargarTabla();
   }, [depositoId])
+
+  useEffect(() => {
+    if (alertWithoutModal) setTimeout(() => setAlertWithoutModal(false), 5000);
+  }, [alertWithoutModal])
 
   useEffect(() => {
     if (idUpdate != 0) CargarDatos(idUpdate);
@@ -75,10 +82,14 @@ export const Materials = () => {
 
     RecursoServicio.crearRecurso(datosLimpios, depositoId)
       .then(d => {
-        console.log(d);
-        RecargarTabla();
-      })
-      .catch(e => console.log(e));
+        setAlertWithoutModal(true);
+        setResultAPI(d.data);
+        CerrarModal(d.data);
+      }).catch(e => {
+        setAlertWithoutModal(true);
+        console.log(e);
+        setResultAPI("Error:" + e.response.data);
+      });
   }
 
   const CargarDatos = (id) => {
@@ -91,32 +102,87 @@ export const Materials = () => {
         setValue("unidadDeMedida.nombre", d.data.unidadDeMedida);
         setValue("descripcion", d.data.descripcion);
         setValue("cantidad", d.data.cantidad);
+        setValue("recursoId", d.data.idMaterial)
 
         handleInputChange("Tipo de recurso", d.data.tipoRecurso);
       })
       .catch(e => console.log(e));
   }
 
+  const ActualizarRecurso = (datos) => {
+    // CODIGO QUE TENES QUE HACER
+    const datosLimpios = {
+      ...datos,
+      unidadDeMedida: datos.unidadDeMedida.nombre,
+      tipoMaterial: datos.tipoMaterial.nombre
+    };
+
+    console.log(datosLimpios);
+    RecursoServicio.actualizarRecurso(datosLimpios, depositoId)
+      .then(d => {
+        setAlertWithoutModal(true);
+        setResultAPI(d.data);
+        CerrarModal(d.data);
+      }).catch(e => {
+        setAlertWithoutModal(true);
+        console.log(e);
+        setResultAPI("Error:" + e.response.data);
+      });
+  }
+
+  const EliminaRecurso = () => {
+    RecursoServicio.eliminarRecurso(deleteModal)
+      .then(d => {
+        setAlertWithoutModal(true);
+        setResultAPI(d.data);
+        CerrarModal(d.data);
+      }).catch(e => {
+        setAlertWithoutModal(true);
+        console.log(e);
+        setResultAPI("Error:" + e.response.data);
+      });
+    setDeleteModal(0);
+  }
+
   // MÉTODOS PARA FORM
   const onSubmit = (d) => {
-    CrearRecurso(d);
-    reset();
+    if (idUpdate == 0) CrearRecurso(d);
+    else ActualizarRecurso(d);
+  }
+
+  const CerrarModal = (res = "") => {
     setModal(false);
+    if (idUpdate != 0 || !res.includes("Error")) reset();
+    if (!res.includes("Error")) RecargarTabla();
+    setIdUpdate(0);
   }
 
   return (
     <>
       {
+        alertWithoutModal ?
+          <Alert resultAPI={resultAPI} setAlertWithoutModal={setAlertWithoutModal} />
+          : <></>
+      }
+      {
+        deleteModal != 0 ?
+          <ModalVerification id={setDeleteModal}
+            pregunta={"Está a punto de eliminar este registro ¿Está seguro que quiere hacerlo?"}
+            setId={setDeleteModal} successHandle={EliminaRecurso} />
+          : <></>
+      }
+      {
         modal ? // OnValidSubmit == handleSubmit
           <Form title={idUpdate == 0 ? "Añadir recurso" : "Actualizar recurso"}
             buttonMsg={idUpdate == 0 ? "Añadir" : "Actualizar"} closeModal={() => {
-              setModal(false);
               setIdUpdate(0);
+              CerrarModal();
             }}
             handleSubmit={handleSubmit(onSubmit)} onChange={handleInputChange}
             inputs={[
               {
                 "type": "text",
+                "icon": "qr_code",
                 "info": "Código ISO",
                 "register": register, // bind-Value=
                 "registerData": "codigoISO", // Es para hacer el @recurso.CodigoISO
@@ -124,6 +190,7 @@ export const Materials = () => {
               },
               {
                 "type": "select",
+                "icon": "handyman",
                 "info": "Tipo de recurso",
                 "required": true,
                 "select": [{ v: 0, tipo: "Material" }, { v: 1, tipo: "Maquina" }],
@@ -133,6 +200,7 @@ export const Materials = () => {
               },
               {
                 "type": "text",
+                "icon": "settings_account_box",
                 "info": "Nombre del recurso",
                 "register": register,
                 "registerData": "nombre",
@@ -140,6 +208,7 @@ export const Materials = () => {
               },
               {
                 "type": "select",
+                "icon": "texture",
                 "info": "Tipo de material",
                 "select": ["Vacío", "Cemento", "Acero", "Arena", "Grava", "Ladrillo", "Madera",
                   "Bloque", "Yeso", "Pintura"],
@@ -151,8 +220,9 @@ export const Materials = () => {
               },
               {
                 "type": "select",
+                "icon": "straighten",
                 "info": "Unidad de medida",
-                "select": ["kg", "m", "l", "bolsa"],
+                "select": ["kg", "m", "l", "Bolsa x 50kg", "g"],
                 "required": tipoDeRecurso === 0,
                 "disabled": tipoDeRecurso === 1,
                 "register": register,
@@ -161,6 +231,7 @@ export const Materials = () => {
               },
               {
                 "type": "text",
+                "icon": "description",
                 "info": "Descripción del recurso",
                 "register": register,
                 "registerData": "descripcion",
@@ -168,6 +239,7 @@ export const Materials = () => {
               },
               {
                 "type": "number",
+                "icon": "production_quantity_limits",
                 "info": "Cantidad disponible",
                 "required": true,
                 "register": register,
@@ -180,7 +252,7 @@ export const Materials = () => {
       <section className="Materials">
         <LogOut />
         <div className="upPart">
-          <h1>Administrar recursos (Depósito {depositoId}):</h1>
+          <h1>Administrar recursos</h1>
           <BotonAnadir setOnClick={() => setModal(true)}>Añadir recurso</BotonAnadir>
         </div>
         {
@@ -194,6 +266,7 @@ export const Materials = () => {
           datos={datos}
           modalHandle={setModal}
           idHandle={setIdUpdate}
+          deleteHandle={setDeleteModal}
         />
       </section>
     </>

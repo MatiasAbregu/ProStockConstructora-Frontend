@@ -81,7 +81,6 @@ th {
     top: 0;
 }
 
-
 .tablaFilaEditar span:hover {
     color: white;
 }
@@ -95,8 +94,9 @@ th {
     background-color: #1aa958;
 }
 
-.tablaFilaEditar .contactButton:hover {
-    background-color: #1f3a57;
+.tablaFilaEditar .contactButton:hover,
+.tablaFilaEditar .locationButton:hover {
+    background-color: #4b6786;
 }
 
 .tablaFilaEditar .disableButton:hover,
@@ -137,4 +137,10 @@ th {
     color: white;
     font-size: 1.2rem;
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .tablaFilaEditar span {
+        padding: 3%;
+    }
 }

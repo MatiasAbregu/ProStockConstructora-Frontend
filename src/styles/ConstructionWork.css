@@ -7,6 +7,11 @@
   overflow-y: auto;
 }
 
+.msgBBDD {
+  width: 100%;
+  text-align: center;
+}
+
 @media screen and (max-width: 800px) {
   .ConstructionWork {
     flex-direction: row;

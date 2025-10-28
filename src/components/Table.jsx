@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import '../styles/Table.css';
 
-export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, idHandle, stateHandle }) => {
+export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, idHandle, stateHandle, deleteHandle }) => {
 
     const [enableTABLARESPONSIVA, setEnableTABLARESPONSIVA] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => {
@@ -42,10 +43,10 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                     else return (<td key={i2}>---</td>)
                                 }
 
-                                if (Array.isArray(dato)) dato = dato.join(" - ")
+                                //if (Array.isArray(dato)) dato = dato.join(" - ")
                                 if (enableTABLARESPONSIVA) {
-                                    if (i == longitudArray.length - 1) return (<p key={i2}>{dato}</p>)
-                                    return (<><p key={i2}>{dato}</p> -</>);
+                                    if (i2 == (longitudArray.length - camposAExcluir.length)) return (<p key={i2}>{dato}</p>)
+                                    return (<React.Fragment key={i2}><p>{dato}</p> -</React.Fragment>);
                                 }
                                 else return (<td key={i2}>{dato}</td>);
                             })
@@ -55,15 +56,15 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                 <Contenedor2 className="tablaFilaEditar" >
                                     {
                                         opciones.map((value, i3) => {
-                                            if (value.eye) {
+                                            if (value.to) {
                                                 return (
-                                                    <NavLink to={id && value.eye.includes(":id") ?
-                                                        `${value.eye.replace(":id", id)}` : value.eye}
-                                                        title="Ver detalles" key={i3}>
-                                                        <span className="material-symbols-outlined seeButton">
-                                                            visibility
-                                                        </span>
-                                                    </NavLink>
+                                                    <span className="material-symbols-outlined seeButton" key={i3}
+                                                        onClick={() => {
+                                                            navigate(id && value.to.url.includes(":id") ?
+                                                                `${value.to.url.replace(":id", id)}` : value.to.url);
+                                                        }} title="Ver detalles">
+                                                        {value.to.icon}
+                                                    </span>
                                                 )
                                             } else if (value == "editar") {
                                                 return (
@@ -84,7 +85,9 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                             } else if (value == "eliminar") {
                                                 return (
                                                     <span className="material-symbols-outlined deleteButton"
-                                                        key={i3} title="Eliminar">
+                                                        key={i3} title="Eliminar" onClick={() => {
+                                                            deleteHandle(id);
+                                                        }}>
                                                         delete
                                                     </span>
                                                 )
@@ -96,6 +99,16 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                                             value.contacto(true)
                                                         }}>
                                                         contact_phone
+                                                    </span>
+                                                )
+                                            } else if (value.location) {
+                                                return (
+                                                    <span className="material-symbols-outlined locationButton" key={i3}
+                                                        onClick={() => {
+                                                            idHandle(id);
+                                                            value.location(true)
+                                                        }}>
+                                                        location_on
                                                     </span>
                                                 )
                                             }
@@ -144,7 +157,7 @@ export const Table = ({ columnas, datos, camposAExcluir, opciones, modalHandle, 
                                 {
                                     columnas.map((columna, i, longitudArray) => {
                                         if (i == longitudArray.length - 1) return (<p key={i}>{columna}</p>)
-                                        else return (<><p key={i}>{columna}</p> -</>)
+                                        else return (<React.Fragment key={i}><p>{columna}</p> -</React.Fragment>)
                                     })
                                 }
                             </div>
