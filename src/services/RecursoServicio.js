@@ -11,6 +11,11 @@ class RecursoServicio {
         return axios.get(`${url}/deposito/${depositoId}`);
     }
 
+    // GET GENERAL
+    traerRecursosGeneral(empresaId){
+        return axios.get(`${url}/materialesYmaquinarias/${empresaId}`)
+    }
+
     traerRecursoDepositoPorStockId(stockId) {
         return axios.get(`${url}/${stockId}`);
     }

@@ -7,17 +7,35 @@ import { Table } from "../components/Table";
 
 import ButtonMany from "./ButtonMany";
 import { LogOut } from "../components/LogOut";
+import RecursoServicio from "../services/RecursoServicio";
 
 export const Home = () => {
 
   const [opciones, setOpciones] = useState(0)
+  const [datos, setDatos] = useState()
+  const [msjBBDD, setMsjBBDD] = useState()
 
   useEffect(() => {
     document.title = "Inicio - ProStockConstructora";
 
     const rootDiv = document.getElementById("root");
     rootDiv.className = "pagedivided";
+
+    RecargarTabla();
   }, []);
+
+  const RecargarTabla = () => {
+    RecursoServicio.traerRecursosGeneral(1)
+      .then(d => {
+        if (typeof d.data == "string") setMsjBBDD(d.data);
+        else {
+          setDatos(d.data)
+          setMsjBBDD("");
+        }
+      }
+      ).catch(e => console.log(e)
+      )
+  }
 
   return (
     <>
@@ -28,6 +46,7 @@ export const Home = () => {
           <h1>Pedidos pendientes:</h1>
           <ButtonMany setOpciones={setOpciones}></ButtonMany>
         </div>
+
         {
           opciones == 0 ?
             <Table
@@ -47,15 +66,16 @@ export const Home = () => {
                 },
               ]}
             /> : opciones == 1 ?
-              <Table datos={[{
-                "codigo": "01 - Cemento",
-                "Unidad": "Kg",
-              }, 
-              {
-                "codigo": "02 - Arena",
-                "unidad": "Kg",
-              }
-              ]} columnas={["Codigo - Nombre", "Unidad"]} /> :
+              <>
+                {
+                  msjBBDD ?
+                    <p>{msjBBDD}</p> : <></>
+                }
+                <Table datos={
+                  datos
+                }
+                  columnas={["Codigo - Nombre", "Unidad"]} />
+              </> :
               undefined
         }
       </section>

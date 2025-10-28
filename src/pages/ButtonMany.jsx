@@ -14,9 +14,8 @@ function ButtonMany({ setOpciones }) {
     <select className="buttonmany" onChange={(e) => cambiaropcion(e)
     }>
       <option value="0">Varios</option>
-      <option value="1">Materiales</option>
-      <option value="2">Maquinarias</option>
-      <option value="3">Empresas</option>
+      <option value="1">Recursos</option>
+      <option value="2">Empresas</option>
     </select>
   )
 }
