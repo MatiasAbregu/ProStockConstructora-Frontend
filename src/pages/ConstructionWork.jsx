@@ -41,7 +41,7 @@ export const ConstructionWork = () => {
 
   useEffect(() => {
     if (alertWithoutModal) setTimeout(() => setAlertWithoutModal(false), 5000);
-  }, [alertWithoutModal])
+  }, [alertWithoutModal]);
 
   useEffect(() => {
     if (idUpdate != 0) CargarDatos(idUpdate);

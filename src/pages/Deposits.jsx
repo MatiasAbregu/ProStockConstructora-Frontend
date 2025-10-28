@@ -12,31 +12,32 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import DepositoYUP from "../schemas/DepositoYUP";
 import { VisualForm } from '../components/VisualForm';
+import { Alert } from "../components/Alert";
 
 const provincias = [
-  "Buenos Aires",
-  "Catamarca",
-  "Chaco",
-  "Chubut",
-  "Córdoba",
-  "Corrientes",
-  "Entre Ríos",
-  "Formosa",
-  "Jujuy",
-  "La Pampa",
-  "La Rioja",
-  "Mendoza",
-  "Misiones",
-  "Neuquén",
-  "Río Negro",
-  "Salta",
-  "San Juan",
-  "San Luis",
-  "Santa Cruz",
-  "Santa Fe",
-  "Santiago del Estero",
-  "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
-  "Tucumán"
+  "BUENOS AIRES",
+  "CATAMARCA",
+  "CHACO",
+  "CHUBUT",
+  "CÓRDOBA",
+  "CORRIENTES",
+  "ENTRE RÍOS",
+  "FORMOSA",
+  "JUJUY",
+  "LA PAMPA",
+  "LA RIOJA",
+  "MENDOZA",
+  "MISIONES",
+  "NEUQUÉN",
+  "RÍO NEGRO",
+  "SALTA",
+  "SAN JUAN",
+  "SAN LUIS",
+  "SANTA CRUZ",
+  "SANTA FE",
+  "SANTIAGO DEL ESTERO",
+  "TIERRA DEL FUEGO, ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR",
+  "TUCUMÁN"
 ];
 
 export const Deposits = () => {
@@ -108,7 +109,16 @@ export const Deposits = () => {
   }
 
   const CargarDatos = (id) => {
-
+    DepositoServicio.obtenerDepositoPorId(id)
+      .then(d => {
+        //console.log(d);
+        setValue("codigoDeposito", d.data.codigoDeposito);
+        setValue("nombreDeposito", d.data.nombreDeposito);
+        setValue("tipoDeposito", d.data.tipoDeposito == "Disponible" ? 0 : d.data.tipoDeposito == "EnUso" ? 1 : 2);
+        setValue("ubicacion.codigoUbicacion", d.data.ubicacion.codigoUbicacion)
+        setValue("ubicacion.ubicacionDomicilio", d.data.ubicacion.ubicacionDomicilio);
+        setValue("ubicacion.provincia.nombreProvincia", d.data.ubicacion.provincia.nombreProvincia);
+      }).catch(e => console.log(e));
   }
 
   // FORM
@@ -128,6 +138,11 @@ export const Deposits = () => {
 
   return (
     <>
+      {
+        alertWithoutModal ?
+          <Alert resultAPI={resultAPI} setAlertWithoutModal={setAlertWithoutModal} />
+          : <></>
+      }
       {
         modalPedido ?
           <Form title={"Generar nuevo pedido"} buttonMsg={"Crear pedido"}
@@ -151,8 +166,8 @@ export const Deposits = () => {
       }
       {
         modal ?
-          <Form title={idUpdate == 0 ? "Añadir depósito" : "Actualizar depósito"} buttonMsg={idUpdate == 0 ? "Añadir" : "Actualizar"} 
-          closeModal={() => setModal(false)}
+          <Form title={idUpdate == 0 ? "Añadir depósito" : "Actualizar depósito"} buttonMsg={idUpdate == 0 ? "Añadir" : "Actualizar"}
+            closeModal={() => CerrarModal()}
             handleSubmit={handleSubmit(onSubmit)}
             inputs={[
               {
@@ -206,6 +221,7 @@ export const Deposits = () => {
                 "icon": "location_chip",
                 "info": "Provincia",
                 "select": provincias,
+                "required": true,
                 "register": register,
                 "registerData": "ubicacion.provincia.nombreProvincia",
                 "errors": errors
@@ -220,16 +236,25 @@ export const Deposits = () => {
               "type": "text",
               "info": "Código de ubicación",
               "icon": "location_searching",
+              "register": register,
+              "registerData": "ubicacion.codigoUbicacion",
+              "errors": errors
             },
             {
               "type": "text",
               "info": "Ubicación",
-              "icon": "location_on"
+              "icon": "location_on",
+              "register": register,
+              "registerData": "ubicacion.ubicacionDomicilio",
+              "errors": errors
             },
             {
               "type": "text",
               "info": "Provincia",
-              "icon": "location_chip"
+              "icon": "location_chip",
+              "register": register,
+              "registerData": "ubicacion.provincia.nombreProvincia",
+              "errors": errors
             }
             ]} />
           :
@@ -248,7 +273,7 @@ export const Deposits = () => {
         }
         <Table
           columnas={["Código", "Nombre", "Tipo de depósito"]}
-          opciones={[{ location: setModalLocation }, { to: { url: "/materials/:id", icon: "construction" } }, "editar", "eliminar"]}
+          opciones={[{ location: setModalLocation }, { to: { url: "/materials/:id", icon: "construction" } }, "editar"]}
           camposAExcluir={["id", "ubicacion", "provincia"]}
           modalHandle={setModal}
           idHandle={setIdUpdate}
