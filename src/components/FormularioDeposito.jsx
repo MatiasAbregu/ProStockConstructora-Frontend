@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/FormularioDeposito.css';
+//import '../styles/FormularioDeposito.css';
 
 export const FormularioDeposito = ({ onClose }) => {
   const [nombre, setNombre] = useState("");
