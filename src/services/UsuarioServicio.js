@@ -13,6 +13,10 @@ class UsuarioServicio {
         return axios.get(`${url}/${id}`);
     }
 
+    ObtenerUsuarioPorId(id) {
+        return axios.get(`${url}/obtener-usuario/${id}`)
+    }
+
     CrearUsuario(usuario) {
         return axios.post(`${url}`, usuario);
     }

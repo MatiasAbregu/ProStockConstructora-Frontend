@@ -14,6 +14,7 @@ import { UsersView } from "./pages/UsersPages/UsersView";
 import { LogOut } from './pages/LogOut';
 import { MenuUsers } from "./pages/UsersPages/MenuUsers";
 import { MaterialsDetails } from "./pages/MaterialsDetails";
+import { NotaDePedido } from "./pages/NotaDePedidos";
 
 function App() {
   return (
@@ -21,10 +22,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/materials" element={<Materials />} />
+        <Route path="/materials/:depositoId" element={<Materials />} />
         <Route path="/machines" element={<Machines />} />
         <Route path="/tracking" element={<Tracking />} />
-        <Route path="/deposits" element={<Deposits />} />
+        <Route path="/deposits/:obraId" element={<Deposits />} />
         <Route path="/construction-work" element={<ConstructionWork />} />
         {/* <Route path="/enterprises" element={<Enterprises />} /> */}
         <Route path="/stadistics" element={<Stadistics />} />
@@ -33,6 +34,7 @@ function App() {
         <Route path="/users" element={<MenuUsers />} />
         <Route path="/users/users-view" element={<UsersView />} />
         <Route path="/log-out" element={<LogOut />} />
+        <Route path="/NotaDePedidos" element={<NotaDePedido />} />
 
       </Routes>
     </BrowserRouter>

@@ -20,6 +20,7 @@
     flex-direction: column;
     align-items: center;
     width: 50%;
+    height: min-content;
 
     background-color: #40619B;
 
@@ -55,13 +56,6 @@
     text-align: center;
     margin-bottom: 6%;
     user-select: none;
-}
-
-.containerItemsForm {
-    height: 60vh;
-    width: 100%;
-    overflow-y: auto;
-    padding: 0 3%;
 }
 
 .modalBack button {
@@ -124,6 +118,10 @@
 .formResult p {
     margin: 0;
     width: 95%;
+}
+
+.modalBack.visualModal form {
+    height: 62vh;
 }
 
 @keyframes aparecerModal {

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { InputForm } from "./InputForm";
 import '../styles/Form.css';
 
-// alertMSGAPI -> Decide si se muestra o no || setAlertMSGAPI se activa en el formulario principal y se desactiva desde acá
-export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal, onChange }) => {
+export const VisualForm = ({ title, inputs, closeModal }) => {
 
     const [modalForm, setModalForm] = useState(false);
 
@@ -12,10 +11,10 @@ export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal, onCha
     }, []);
 
     return (
-        <div className="modalBack">
+        <div className="modalBack visualModal">
             {
                 modalForm ?
-                    <form onSubmit={handleSubmit}>
+                    <form>
                         <span onClick={closeModal} className="btnClose">X</span>
                         <h3>{title}</h3>
                         <div className="containerItemsForm">
@@ -24,14 +23,15 @@ export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal, onCha
                                     inputs.map((input, i) => {
                                         if (input.type != "select") {
                                             return (
-                                                <InputForm typeInput={input.type} required={input.required} disabled={input.disabled} 
-                                                icon={input.icon} register={input.register} registerData={input.registerData} errorsHandle={input.errors} keyHandle={input.keyHandle} key={i}>
+                                                <InputForm typeInput={input.type} required={input.required} icon={input.icon}
+                                                    keyHandle={input.keyHandle} register={input.register} 
+                                                    registerData={input.registerData} key={i} visual={true}>
                                                     {input.info}
                                                 </InputForm>
                                             );
                                         } else {
                                             return (
-                                                <InputForm select={input.select} icon={input.icon} register={input.register} registerData={input.registerData} errorsHandle={input.errorsHandle} key={i} required={input.required} disabled={input.disabled} onChange={onChange}>
+                                                <InputForm select={input.select} icon={input.icon} key={i}>
                                                     {input.info}
                                                 </InputForm>
                                             );
@@ -40,7 +40,6 @@ export const Form = ({ title, buttonMsg, inputs, handleSubmit, closeModal, onCha
                                     : null
                             }
                         </div>
-                        <button type="submit">{buttonMsg}</button>
                     </form> : <></>
             }
         </div>

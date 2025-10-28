@@ -29,6 +29,7 @@ export const Home = () => {
         <div className="button-container">
           <ButtonMany setOpciones={setOpciones}></ButtonMany>
         </div>
+<<<<<<< HEAD
           {  
           opciones==0?
           <Table
@@ -54,6 +55,37 @@ export const Home = () => {
         },{ "codigo":"02-Arena-Holcim",
           "unidad":"Kg",
 
+=======
+        {
+          opciones == 0 ?
+            <Table
+              columnas={["Código - Nombre - Empresa", "Estado"]}
+              datos={[
+                {
+                  codigo: "1 - Parque Industrial Norte / G.C.Construcciones",
+                  estado: "En curso",
+                },
+                {
+                  codigo: "2 - Proyecto Oasis XXI / MURO Arquitectos",
+                  estado: "Finalizada",
+                },
+                {
+                  codigo: "3 - Edificio Central / Constructora ABC",
+                  estado: "En pausa",
+                },
+              ]}
+            /> : opciones == 1 ?
+              <Table datos={[{
+                "codigo": "01 - Cemento",
+                "Unidad": "Kg",
+              }, 
+              {
+                "codigo": "02 - Arena",
+                "unidad": "Kg",
+              }
+              ]} columnas={["Codigo - Nombre", "Unidad"]} /> :
+              undefined
+>>>>>>> 1312b355962eb37075b9899c41ed5435d34a7f5e
         }
       
       

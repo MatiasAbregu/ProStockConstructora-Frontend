@@ -12,7 +12,7 @@
 }
 
 .sidebar.sidebar-open {
-  width: 200px;
+  width: 250px;
 }
 
 .sidebar:not(.sidebar-open) ul li {

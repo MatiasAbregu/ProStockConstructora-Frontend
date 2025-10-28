@@ -52,7 +52,8 @@ export const Enterprises = () => {
   }, [idUpdate]);
 
   // YUP
-  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm({ resolver: yupResolver(EmpresaYUP), mode: "onChange" });
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = 
+  useForm({ resolver: yupResolver(EmpresaYUP), mode: "onChange" });
 
   // API BACKEND REQUESTS
   const RecargarTabla = () => {

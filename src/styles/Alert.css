@@ -1,0 +1,19 @@
+.alertContainer {
+    position: absolute;
+    width: 40%;
+    bottom: 2%;
+    right: 1%;
+    color: white;
+    border-radius: 10px;
+    user-select: none;
+    z-index: 2;
+    animation: slideIn .5s linear normal;
+}
+
+.alertContainer.FRexito {
+    background-color: #1aa958;
+}
+
+.alertContainer.FRerror {
+    background-color: #c24444;
+}

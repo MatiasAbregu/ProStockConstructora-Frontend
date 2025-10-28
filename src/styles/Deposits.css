@@ -1,16 +1,30 @@
 .Deposits {
-  width: 85%;
+  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  overflow-y: hidden;
+}
+
+.Deposits .upPart {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Deposits .upPart .btnAnadir{
+  margin-left: 2%;
+}
+
+.Deposits .tableArticle{
   overflow-y: auto;
 }
 
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1300px) {
   .Deposits {
     flex-direction: row;
     overflow-y: auto;
     width: 80%;
   }
-} 
+}
