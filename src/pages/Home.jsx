@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import "../styles/Home.css";
 import { Sidebar } from "../components/Sidebar";
-// import { ButtonMenu } from "../components/ButtonMenu";
+import { ButtonMenu } from "../components/ButtonMenu";
+import { PendingOrders } from "./PendingOrders";
 import { Table } from "../components/Table";
 
 
 import ButtonMany from "./ButtonMany";
-import { LogOut } from "../components/LogOut";
 
 export const Home = () => {
 
   const [opciones, setOpciones] = useState(0)
+
+
 
   useEffect(() => {
     document.title = "Inicio - ProStockConstructora";
@@ -23,9 +25,8 @@ export const Home = () => {
     <>
       <Sidebar />
       <section className="Home">
-        <LogOut />
-        <div className="upPart">
-          <h1>Pedidos pendientes:</h1>
+        <h1>Pedidos pendientes:</h1>
+        <div className="button-container">
           <ButtonMany setOpciones={setOpciones}></ButtonMany>
         </div>
         {
@@ -50,7 +51,7 @@ export const Home = () => {
               <Table datos={[{
                 "codigo": "01 - Cemento",
                 "Unidad": "Kg",
-              }, 
+              },
               {
                 "codigo": "02 - Arena",
                 "unidad": "Kg",

@@ -15,6 +15,7 @@ import { LogOut } from './pages/LogOut';
 import { MenuUsers } from "./pages/UsersPages/MenuUsers";
 import { MaterialsDetails } from "./pages/MaterialsDetails";
 import { NotaDePedido } from "./pages/NotaDePedidos";
+import { FormularioDeposito } from './components/FormularioDeposito';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/machines" element={<Machines />} />
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/deposits/:obraId" element={<Deposits />} />
+        <Route path="/deposits" element={<FormularioDeposito />} />
         <Route path="/construction-work" element={<ConstructionWork />} />
         {/* <Route path="/enterprises" element={<Enterprises />} /> */}
         <Route path="/stadistics" element={<Stadistics />} />
