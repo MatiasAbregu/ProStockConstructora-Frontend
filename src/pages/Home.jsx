@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/Home.css";
 import { Sidebar } from "../components/Sidebar";
-// import { ButtonMenu } from "../components/ButtonMenu";
+import { ButtonMenu } from "../components/ButtonMenu";
+import { PendingOrders } from "./PendingOrders";
 import { Table } from "../components/Table";
 
 
@@ -14,6 +15,8 @@ export const Home = () => {
   const [opciones, setOpciones] = useState(0)
   const [datos, setDatos] = useState()
   const [msjBBDD, setMsjBBDD] = useState()
+
+
 
   useEffect(() => {
     document.title = "Inicio - ProStockConstructora";
@@ -41,9 +44,8 @@ export const Home = () => {
     <>
       <Sidebar />
       <section className="Home">
-        <LogOut />
-        <div className="upPart">
-          <h1>Pedidos pendientes:</h1>
+        <h1>Pedidos pendientes:</h1>
+        <div className="button-container">
           <ButtonMany setOpciones={setOpciones}></ButtonMany>
         </div>
 
@@ -74,7 +76,7 @@ export const Home = () => {
                 <Table datos={
                   datos
                 }
-                  columnas={["Codigo - Nombre", "Unidad"]} />
+                  columnas={["Codigo", "Nombre", "Unidad"]} camposAExcluir={["Descripcion"]}/>                  
               </> :
               undefined
         }

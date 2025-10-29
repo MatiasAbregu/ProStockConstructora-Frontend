@@ -20,7 +20,10 @@ export const Tracking = () => {
         <h1>Administrar pedidos:</h1>
         <Table
           columnas={["Nº Pedido", "Origen - Destino", "Fecha Entrega / Estimada", "Fecha recibida Prod"]}
-          opciones={[{eye: "/NotaDePedidos"},"editar", "eliminar"]}
+          opciones={[{to: {
+            url: "/NotaDePedidos",
+            icon: "docs"
+          }},"editar", "eliminar"]}
           datos={
             [
               {

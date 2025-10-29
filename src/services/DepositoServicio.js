@@ -9,7 +9,7 @@ class DepositoServicio {
     }
     
     obtenerDepositoPorId(depositoId) {
-        
+        return axios.get(`${url}/${depositoId}`);
     }
 
     crearDeposito(deposito) {
